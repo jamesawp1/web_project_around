@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./pages/index.css" />
     <link />
   </head>
-  <body>
+  <body class="body">
     <div class="page">
       <header class="header">
         <img
@@ -21,15 +21,19 @@
       </header>
       <main class="main">
         <section class="profile">
+          <img class="profile__image" src="./images/profile__image.jpg" />
           <div class="profile__info">
-            <img class="profile__image" src="./images/profile__image.jpg" />
-            <div class="profile__texts_wrapper">
+            <div class="profile__info-wrapper">
               <h2 class="profile__title">Jacques Cousteau</h2>
-              <h3 class="profile__subtitle">Explorador</h3>
+              <button class="profile__button_edit">
+                <img src="./images/icon__edit_button.svg" />
+              </button>
             </div>
-            <button class="button2">1</button>
+            <h3 class="profile__subtitle">Explorador</h3>
           </div>
-          <button class="profile__button">2</button>
+          <button class="profile__button_add">
+            <img src="./images/icon__add_button.svg" />
+          </button>
         </section>
         <section class="album"></section>
       </main>
