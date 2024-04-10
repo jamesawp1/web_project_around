@@ -1,4 +1,19 @@
 .main {
+  gap: 50px;
   padding: 40px 0 67px;
   margin: 0;
+  background-color: #000;
+}
+
+@media screen and (max-width: 880px) {
+  .main {
+    padding: 42px 27px 50px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    padding: 42px 19px 50px;
+    gap: 36px;
+  }
 }
