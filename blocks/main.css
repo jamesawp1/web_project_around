@@ -1,4 +1,6 @@
 .main {
+  max-width: 880px;
   margin: 0 auto;
   padding: 40px 0 67px;
+  color: #fff;
 }
