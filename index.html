@@ -45,8 +45,69 @@
               <button class="gallery__button"></button>
             </div>
           </div>
-        </section>
+        </section>-->
       </main>
+    </div>
+
+    <div class="popup">
+      <div class="popup__container">
+        <form class="form popup__form" id="form_edit-profile" novalidate>
+          <button class="form__exit-button"></button>
+          <h2 class="form__title">Editar perfil</h2>
+          <input
+            class="form__name popup__input"
+            id="form__name"
+            type="text"
+            name="name"
+            placeholder="Nombre"
+            maxlength="40"
+            minlength="2"
+            required
+          />
+          <span class="popup__error form__name-error"></span>
+          <input
+            class="form__description popup__input"
+            id="form__description"
+            type="text"
+            name="description"
+            placeholder="Descripción"
+            maxlength="200"
+            minlength="2"
+            required
+          />
+          <span class="popup__error form__description-error"></span>
+          <button class="popup__button form__save-button" id="save_profile">
+            Guardar
+          </button>
+        </form>
+        <form class="form popup__form" id="form_add-element" novalidate>
+          <button class="form__exit-button"></button>
+          <h2 class="form__title">Nuevo lugar</h2>
+          <input
+            class="form__place popup__input"
+            id="form__place"
+            type="text"
+            name="place"
+            placeholder="Título"
+            minlength="2"
+            maxlength="30"
+            required
+          />
+          <span class="popup__error form__place-error"></span>
+          <input
+            class="form__image-link popup__input"
+            id="form__image-link"
+            type="url"
+            name="image-link"
+            placeholder="Enlace de la imagen"
+            required
+          />
+          <span class="popup__error form__image-link-error"></span>
+          <button class="popup__button form__save-button" id="save_place">
+            Crear
+          </button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

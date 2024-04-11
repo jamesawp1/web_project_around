@@ -113,11 +113,10 @@
   }
 
   .profile__subtitle {
-  }
-
-  .profile__button_add {
-  }
-
-  .profile__button_add-icon {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: center;
   }
 }
