@@ -47,67 +47,39 @@
           </div>
         </section>-->
       </main>
-    </div>
 
-    <div class="popup">
-      <div class="popup__container">
-        <form class="form popup__form" id="form_edit-profile" novalidate>
-          <button class="form__exit-button"></button>
-          <h2 class="form__title">Editar perfil</h2>
-          <input
-            class="form__name popup__input"
-            id="form__name"
-            type="text"
-            name="name"
-            placeholder="Nombre"
-            maxlength="40"
-            minlength="2"
-            required
+      <div class="popup">
+        <div class="popup__container">
+          <img
+            class="popup__close-button"
+            src="./images/close_icon.png"
+            alt="Botão de fechar o popup"
           />
-          <span class="popup__error form__name-error"></span>
-          <input
-            class="form__description popup__input"
-            id="form__description"
-            type="text"
-            name="description"
-            placeholder="Descripción"
-            maxlength="200"
-            minlength="2"
-            required
-          />
-          <span class="popup__error form__description-error"></span>
-          <button class="popup__button form__save-button" id="save_profile">
-            Guardar
-          </button>
-        </form>
-        <form class="form popup__form" id="form_add-element" novalidate>
-          <button class="form__exit-button"></button>
-          <h2 class="form__title">Nuevo lugar</h2>
-          <input
-            class="form__place popup__input"
-            id="form__place"
-            type="text"
-            name="place"
-            placeholder="Título"
-            minlength="2"
-            maxlength="30"
-            required
-          />
-          <span class="popup__error form__place-error"></span>
-          <input
-            class="form__image-link popup__input"
-            id="form__image-link"
-            type="url"
-            name="image-link"
-            placeholder="Enlace de la imagen"
-            required
-          />
-          <span class="popup__error form__image-link-error"></span>
-          <button class="popup__button form__save-button" id="save_place">
-            Crear
-          </button>
-        </form>
+          <h2 class="popup__title">Editar perfil</h2>
+          <form class="popup__form">
+            <input
+              id="input-name"
+              class="popup__input"
+              type="text"
+              placeholder="Nome"
+              value="Jacques Cousteau"
+            />
+            <span id="input-name-error" class="popup__form-error"></span>
+            <input
+              id="input-role"
+              class="popup__input"
+              type="text"
+              placeholder="Sobre Mim"
+              value="Explorador"
+            />
+            <span id="input-role-error" class="popup__form-error"></span>
+            <button id="save-button" class="popup__save-button" type="submit">
+              Salvar
+            </button>
+          </form>
+        </div>
       </div>
     </div>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
