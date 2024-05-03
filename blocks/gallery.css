@@ -15,7 +15,7 @@
   padding: 0;
 }
 
-.gallery__card_image {
+.gallery__card-image {
   width: 282px;
   height: 282px;
   border-radius: 10px 10px 0px 0px;
@@ -23,7 +23,7 @@
   padding: 0;
 }
 
-.gallery__card_wrapper {
+.gallery__card-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,14 +35,14 @@
   border-radius: 0 0 10px 10px;
 }
 
-.gallery__card_name {
+.gallery__card-name {
   font-size: 24px;
   font-weight: 900;
   line-height: 29.05px;
   color: #000;
 }
 
-.gallery__card_like {
+.gallery__card-like {
   border: none;
   background-color: transparent;
   width: 21px;
@@ -51,12 +51,12 @@
   padding: 0;
 }
 
-.gallery__card_like:hover {
+.gallery__card-like:hover {
   cursor: pointer;
   opacity: 50%;
 }
 
-.gallery__card_like-active {
+.gallery__card-like-active {
   border: none;
   background-color: transparent;
   background-image: url(../images/button__icon_active.svg);
