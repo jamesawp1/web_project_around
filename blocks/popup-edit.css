@@ -91,6 +91,7 @@
   line-height: 21.78px;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .popup__save-button:disabled {

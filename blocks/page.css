@@ -1,4 +1,21 @@
 .page {
-  margin: 0 auto;
   max-width: 1280px;
+}
+
+@media screen and (max-width: 1120px) {
+  .page {
+    padding: 0px 28px 0px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .page {
+    padding: 0 19px 0;
+  }
+}
+
+@media screen and (max-width: 319px) {
+  .page {
+    padding: unset;
+  }
 }

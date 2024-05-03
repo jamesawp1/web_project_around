@@ -1,29 +1,23 @@
 .header {
   max-width: 880px;
-  background-color: #000;
-  display: flex;
-  justify-content: flex-start;
-  padding: 45px 0 0;
-  margin: 0 auto;
+  max-height: 74px;
   border-bottom: 1px solid #545454;
+  margin: 45px auto 0;
 }
 
 .header__image {
-  padding: 0 0 41px;
+  margin: 0 0 41px;
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 1024px) {
   .header {
-    padding: 45px 27px 0;
   }
 }
 
 @media screen and (max-width: 790px) {
   .header {
-    padding: 28px 27px 0;
   }
 
   .header__image {
-    padding: 0 0 32px;
   }
 }

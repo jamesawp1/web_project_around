@@ -1,49 +1,81 @@
 .gallery {
-  max-width: 880px;
-  padding: 0;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px 17px;
-  list-style: none;
+  gap: 21px 17px;
+  max-width: 880px;
+  margin: 0 auto;
 }
 
 .gallery__card {
-  overflow: hidden;
-  border-radius: 10px 10px 10px 10px;
-}
-
-.gallery__image {
-  max-width: 282px;
-  max-height: 282px;
-}
-
-.gallery__information {
-  background-color: #fff;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 24px 15px 25px 21px;
+  flex-direction: column;
+  width: 282px;
+  height: 361px;
+  margin: 0;
+  padding: 0;
 }
 
-.gallery__title {
-  font-family: "Inter";
+.gallery__card_image {
+  width: 282px;
+  height: 282px;
+  border-radius: 10px 10px 0px 0px;
+  margin: 0;
+  padding: 0;
+}
+
+.gallery__card_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0 15px 0 21px;
+  height: 79px;
+  background-color: white;
+  color: black;
+  border-radius: 0 0 10px 10px;
+}
+
+.gallery__card_name {
   font-size: 24px;
   font-weight: 900;
   line-height: 29.05px;
-  text-align: left;
+  color: #000;
 }
 
-.gallery__button {
+.gallery__card_like {
   border: none;
-  background-image: url(../images/button__icon.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
+  background-color: transparent;
+  width: 21px;
+  height: 19px;
+  margin: 0;
+  padding: 0;
 }
-.gallery__button:hover {
-  opacity: 60%;
+
+.gallery__card_like:hover {
   cursor: pointer;
+  opacity: 50%;
 }
-.gallery__button_active {
+
+.gallery__card_like-active {
+  border: none;
+  background-color: transparent;
   background-image: url(../images/button__icon_active.svg);
+  width: 21px;
+  height: 19px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 591px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .gallery {
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 282px;
+  }
 }
