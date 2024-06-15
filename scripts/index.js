@@ -2,6 +2,7 @@ const editButton = document.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
 const closePopupButton = document.querySelector(".popup__close-button");
 
+//Abre o popup de edição de nome e profissão
 editButton.addEventListener("click", function () {
   popup.classList.toggle("popup_opened");
 });
@@ -22,6 +23,13 @@ function handleProfileFormSubmit(evt) {
   popup.classList.toggle("popup_opened");
 }
 formElement.addEventListener("submit", handleProfileFormSubmit);
+
+//Abre o popup que permite adicionar mais cards
+const addButton = document.querySelector(".profile__add-button");
+const popupAdd = document.querySelector(".popup-add-button");
+addButton.addEventListener("click", () => {
+  popupAdd.classList.toggle("popup_opened");
+});
 
 const initialCards = [
   {
