@@ -9,6 +9,7 @@ closePopupButton.addEventListener("click", function () {
   popup.classList.toggle("popup_opened");
 });
 
+//Função que permite o usuário alterar o nome e profissão
 const formElement = document.querySelector(".popup__form");
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -64,6 +65,7 @@ function renderCard(card) {
   cardClone
     .querySelector(".gallery__card-image")
     .setAttribute("alt", card.name);
+
   //Excluí o card
   const deleteButton = cardClone.querySelector(".gallery__delete-icon");
   deleteButton.addEventListener("click", () => {
@@ -74,8 +76,13 @@ function renderCard(card) {
 }
 
 const gallery = document.querySelector(".gallery");
-
 initialCards.forEach((card, index) => {
   const cardItem = renderCard(card);
   gallery.append(cardItem);
+});
+
+//Alterna a classe do botão de "curtir"
+const likeButton = document.querySelector(".gallery__like-icon");
+likeButton.addEventListener("click", () => {
+  likeButton.setAttribute("src", "./images/button__icon_active.svg");
 });
