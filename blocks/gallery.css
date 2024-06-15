@@ -13,6 +13,24 @@
   height: 361px;
   margin: 0;
   padding: 0;
+  position: relative;
+}
+
+.gallery__delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.gallery__delete-button:hover {
+  cursor: pointer;
+  opacity: 75%;
+}
+
+.gallery__delete-icon {
+  position: absolute;
+  top: 18px;
+  right: 15px;
 }
 
 .gallery__card-image {
