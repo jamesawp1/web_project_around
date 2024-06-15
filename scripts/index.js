@@ -66,11 +66,24 @@ function renderCard(card) {
     .querySelector(".gallery__card-image")
     .setAttribute("alt", card.name);
 
-  //Excluí o card
+  //Exclui o card
   const deleteButton = cardClone.querySelector(".gallery__delete-icon");
   deleteButton.addEventListener("click", () => {
     deleteButton.closest(".gallery__card").remove();
   });
+
+  //Alterna o valor do atributo do botão de "curtir"
+  cardClone
+    .querySelector(".gallery__like-icon")
+    .addEventListener("click", (evt) => {
+      if (evt.target.getAttribute("src") === "./images/button__icon.svg") {
+        return evt.target.setAttribute(
+          "src",
+          "./images/button__icon_active.svg"
+        );
+      }
+      return evt.target.setAttribute("src", "./images/button__icon.svg");
+    });
 
   return cardClone;
 }
@@ -79,10 +92,4 @@ const gallery = document.querySelector(".gallery");
 initialCards.forEach((card, index) => {
   const cardItem = renderCard(card);
   gallery.append(cardItem);
-});
-
-//Alterna a classe do botão de "curtir"
-const likeButton = document.querySelector(".gallery__like-icon");
-likeButton.addEventListener("click", () => {
-  likeButton.setAttribute("src", "./images/button__icon_active.svg");
 });
