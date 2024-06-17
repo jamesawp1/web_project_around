@@ -2,7 +2,7 @@ const editButton = document.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
 const closePopupButton = document.querySelector(".popup__close-button");
 
-//Abre o popup de edição de nome e profissão
+//Abre e fecha o popup de edição de nome e profissão
 editButton.addEventListener("click", function () {
   popup.classList.toggle("popup_opened");
 });
@@ -24,10 +24,34 @@ function handleProfileFormSubmit(evt) {
 }
 formElement.addEventListener("submit", handleProfileFormSubmit);
 
-//Abre o popup que permite adicionar mais cards
+//Abre e fecha o popup que permite adicionar mais cards
 const addButton = document.querySelector(".profile__add-button");
-const popupAdd = document.querySelector(".popup-add-button");
+const popupAdd = document.querySelector(".popup-add-card");
+const closeAddPopup = document.querySelector(".popup-add-card__close-button");
 addButton.addEventListener("click", () => {
+  popupAdd.classList.toggle("popup_opened");
+});
+closeAddPopup.addEventListener("click", () => {
+  popupAdd.classList.toggle("popup_opened");
+});
+
+//Adiciona um card com as informações inseridas pelo usuário
+const placeTitle = document.querySelector("#input-place-title");
+const placeUrl = document.querySelector("#input-place-url");
+const addCardForm = document.querySelector(".popup__form-add-card");
+addCardForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  const newCard = renderCard({
+    name: placeTitle.value,
+    link: placeUrl.value,
+  });
+
+  gallery.prepend(newCard);
+
+  placeTitle.value = "";
+  placeUrl.value = "";
+
   popupAdd.classList.toggle("popup_opened");
 });
 
@@ -61,8 +85,10 @@ const initialCards = [
 const template = document.querySelector("#template").content;
 const cardElement = template.querySelector(".gallery__card");
 
+//Função que faz um card aparecer
 function renderCard(card) {
   const cardClone = cardElement.cloneNode(true);
+  const imageItem = cardClone.querySelector(".gallery__card-image");
 
   cardClone.querySelector(".gallery__card-name").textContent = card.name;
 
@@ -93,11 +119,29 @@ function renderCard(card) {
       return evt.target.setAttribute("src", "./images/button__icon.svg");
     });
 
+  imageItem.addEventListener("click", () => {
+    popupViewImg.classList.toggle("popup_opened");
+    popupViewImg.querySelector(".popup-view-image__image").src = card.link;
+    popupViewImg.querySelector(".popup-view-image__image").alt = card.name;
+    popupViewImg.querySelector(".popup-view-image__title").textContent =
+      card.name;
+  });
+
   return cardClone;
 }
 
+//Faz os cards iniciais aparecerem, com base nas informações listadas no objeto inicialCards
 const gallery = document.querySelector(".gallery");
 initialCards.forEach((card, index) => {
   const cardItem = renderCard(card);
   gallery.append(cardItem);
+});
+
+//Váriavel usada para abrir a imagem
+const popupViewImg = document.querySelector(".popup-view-image");
+
+//eventListener para fechar a imagem
+const closeImage = document.querySelector(".popup-view-image__close-button");
+closeImage.addEventListener("click", () => {
+  popupViewImg.classList.remove("popup_opened");
 });
