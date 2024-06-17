@@ -133,3 +133,18 @@
   text-align: left;
   margin: 10px 0 0;
 }
+
+@media screen and (max-width: 720px) {
+  .popup__close-button {
+    top: -40px;
+    right: 5px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .popup__container {
+    top: 136px;
+    max-width: 282px;
+    max-height: 322px;
+  }
+}
