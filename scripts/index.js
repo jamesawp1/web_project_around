@@ -1,6 +1,7 @@
 const editButton = document.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
 const closePopupButton = document.querySelector(".popup__close-button");
+const popupInput = document.querySelectorAll(".popup__input");
 
 //Abre e fecha o popup de edição de nome e profissão
 editButton.addEventListener("click", function () {
@@ -144,4 +145,15 @@ const popupViewImg = document.querySelector(".popup-view-image");
 const closeImage = document.querySelector(".popup-view-image__close-button");
 closeImage.addEventListener("click", () => {
   popupViewImg.classList.remove("popup_opened");
+});
+
+popupInput.forEach((input) => {
+  input.addEventListener("input", (evt) => {
+    const buttonElement = document.querySelector(".popup__save-button");
+    if (!input.validity.valid) {
+      buttonElement.classList.add("popup__save-button-disabled");
+    } else {
+      buttonElement.classList.remove("popup__save-button-disabled");
+    }
+  });
 });

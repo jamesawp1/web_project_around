@@ -98,8 +98,8 @@
   cursor: pointer;
 }
 
-.popup__save-button:disabled {
-  background-color: #000000cc;
+.popup__save-button-disabled {
+  background-color: #fff;
 }
 
 .popup__save-button:hover {
