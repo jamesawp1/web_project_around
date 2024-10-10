@@ -149,11 +149,14 @@ closeImage.addEventListener("click", () => {
 
 popupInput.forEach((input) => {
   input.addEventListener("input", (evt) => {
-    const buttonElement = document.querySelector(".popup__save-button");
-    if (!input.validity.valid) {
-      buttonElement.classList.add("popup__save-button-disabled");
-    } else {
-      buttonElement.classList.remove("popup__save-button-disabled");
-    }
+    const buttonElement = document
+      .querySelectorAll(".popup__save-button")
+      .forEach((button) => {
+        if (!input.validity.valid) {
+          button.classList.add("popup__save-button-disabled");
+        } else {
+          button.classList.remove("popup__save-button-disabled");
+        }
+      });
   });
 });
