@@ -99,6 +99,8 @@
 }
 
 .popup__save-button-disabled {
+  color: rgba(129, 129, 129, 1);
+  border: 1px solid rgba(129, 129, 129, 1);
   background-color: #fff;
 }
 
