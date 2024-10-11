@@ -159,11 +159,13 @@ allPopups.forEach((pop) => {
 
 //Ouvinte que fecha os popups quando a tecla esc foir pressionada
 document.addEventListener("keydown", (evt) => {
-  if (evt.key === "Escape") {
-    popup.classList.remove("popup_opened");
-    popupViewImg.classList.remove("popup_opened");
-    popupAdd.classList.remove("popup_opened");
-  }
+  allPopups.forEach((pop) => {
+    if (evt.key === "Escape") {
+      pop.classList.remove("popup_opened");
+      pop.classList.remove("popup_opened");
+      pop.classList.remove("popup_opened");
+    }
+  });
 });
 
 //Funções que compõem o sistema de validação das entradas dos formulários
