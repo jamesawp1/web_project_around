@@ -203,6 +203,18 @@ const showInputError = (
   errorElement.classList.add(`${errorVisible}`);
 };
 
+const hideInputError = (
+  formElement,
+  inputElement,
+  inputError,
+  errorVisible
+) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(`${inputError}`);
+  errorElement.textContent = "";
+  errorElement.classList.remove(`${errorVisible}`);
+};
+
 const enableValidation = ({
   formSelector,
   inputSelector,
