@@ -147,21 +147,6 @@ closeImage.addEventListener("click", () => {
   popupViewImg.classList.remove("popup_opened");
 });
 
-//Listener que altera aparencia do botão salvar caso as condições sejam 'ok'
-popupInput.forEach((input) => {
-  input.addEventListener("input", (evt) => {
-    const buttonElement = popup
-      .querySelectorAll(".popup__save-button")
-      .forEach((button) => {
-        if (!input.validity.valid) {
-          button.classList.add("popup__save-button-disabled");
-        } else {
-          button.classList.remove("popup__save-button-disabled");
-        }
-      });
-  });
-});
-
 //Ouvintes de evento do tipo 'click' que fecham os respectivso popups
 popup.addEventListener("click", (evt) => {
   if (evt.target.classList.contains("popup")) {
