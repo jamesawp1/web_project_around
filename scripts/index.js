@@ -189,3 +189,39 @@ document.addEventListener("keydown", (evt) => {
     popupAdd.classList.remove("popup_opened");
   }
 });
+
+const showInputError = () => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+};
+
+const enableValidation = ({
+  formSelector,
+  inputSelector,
+  submitButtonSelector,
+  inactiveButtonClass,
+  inputErrorClass,
+  errorClass,
+}) => {
+  const checkInputValidity = (inputElement) => {
+    if (!inputElement.validity.valid) {
+    }
+  };
+
+  const forms = Array.from(document.querySelectorAll(`${formSelector}`));
+  forms.forEach((form) => {
+    const inputs = Array.from(form.querySelectorAll(`${inputSelector}`));
+
+    inputs.forEach((input) => {
+      input.addEventListener("input", () => {});
+    });
+  });
+};
+
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+});
