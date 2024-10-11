@@ -1,4 +1,6 @@
 //Funções que compõem o sistema de validação das entradas dos formulários
+//
+//mostra aviso de erro
 const showInputError = (
   formElement,
   inputElement,
@@ -12,6 +14,7 @@ const showInputError = (
   errorElement.classList.add(`${errorVisible}`);
 };
 
+//esconde aviso de erro
 const hideInputError = (
   formElement,
   inputElement,
@@ -24,6 +27,7 @@ const hideInputError = (
   errorElement.classList.remove(`${errorVisible}`);
 };
 
+//função que decide o quando a msg de erro deve ou não aparecer
 const checkInputValidity = (
   formElement,
   inputElement,
@@ -43,12 +47,14 @@ const checkInputValidity = (
   }
 };
 
+//verifica se a propriedade valid de um dos itens do array de inputs é falso
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
 };
 
+//muda o estado do botão com base na função hasValidInput
 const toggleButtonState = (inputList, button, buttonInactive) => {
   const buttonElements = document.querySelectorAll(`${button}`);
   buttonElements.forEach((buttonElement) => {
@@ -60,6 +66,7 @@ const toggleButtonState = (inputList, button, buttonInactive) => {
   });
 };
 
+//executa e dá corpo a todo o aparato acima. Ou seja, como o nome diz, habilita a verificação
 const enableValidation = ({
   formSelector,
   inputSelector,
