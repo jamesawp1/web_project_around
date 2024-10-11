@@ -219,6 +219,23 @@ const checkInputValidity = (
   }
 };
 
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+const toggleButtonState = (inputList, button, buttonInactive) => {
+  const buttonElements = document.querySelectorAll(`${button}`);
+  buttonElements.forEach((buttonElement) => {
+    if (hasInvalidInput(inputList)) {
+      buttonElement.classList.add(`${buttonInactive}`);
+    } else {
+      buttonElement.classList.remove(`${buttonInactive}`);
+    }
+  });
+};
+
 const enableValidation = ({
   formSelector,
   inputSelector,
@@ -232,8 +249,10 @@ const enableValidation = ({
     const inputs = Array.from(form.querySelectorAll(`${inputSelector}`));
 
     inputs.forEach((input) => {
+      toggleButtonState(inputs, submitButtonSelector, inactiveButtonClass);
       input.addEventListener("input", () => {
         checkInputValidity(form, input, inputErrorClass, errorClass);
+        toggleButtonState(inputs, submitButtonSelector, inactiveButtonClass);
       });
     });
   });

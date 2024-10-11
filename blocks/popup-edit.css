@@ -89,7 +89,7 @@
   display: block;
 }
 
-.popup__save-button {
+.popup__button {
   width: 100%;
   height: 100%;
   max-height: 50.15px;
@@ -103,14 +103,14 @@
   cursor: pointer;
 }
 
-.popup__save-button-disabled {
+.popup__button_disabled {
   color: rgba(129, 129, 129, 1);
   border: 1px solid rgba(129, 129, 129, 1);
   background-color: #fff;
   cursor: default;
 }
 
-.popup__save-button:hover {
+.popup__button:hover {
   opacity: 0.8;
 }
 
