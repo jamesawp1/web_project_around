@@ -215,6 +215,25 @@ const hideInputError = (
   errorElement.classList.remove(`${errorVisible}`);
 };
 
+const checkInputValidity = (
+  formElement,
+  inputElement,
+  inputError,
+  errorVisible
+) => {
+  if (!inputElement.validity.valid) {
+    showInputError(
+      formElement,
+      inputElement,
+      inputError,
+      errorVisible,
+      inputElement.validationMessage
+    );
+  } else {
+    hideInputError(formElement, inputElement, inputError, errorVisible);
+  }
+};
+
 const enableValidation = ({
   formSelector,
   inputSelector,
@@ -223,17 +242,14 @@ const enableValidation = ({
   inputErrorClass,
   errorClass,
 }) => {
-  const checkInputValidity = (inputElement) => {
-    if (!inputElement.validity.valid) {
-    }
-  };
-
   const forms = Array.from(document.querySelectorAll(`${formSelector}`));
   forms.forEach((form) => {
     const inputs = Array.from(form.querySelectorAll(`${inputSelector}`));
 
     inputs.forEach((input) => {
-      input.addEventListener("input", () => {});
+      input.addEventListener("input", () => {
+        checkInputValidity(form, input, inputErrorClass, errorClass);
+      });
     });
   });
 };
