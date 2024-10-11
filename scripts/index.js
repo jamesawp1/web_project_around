@@ -190,8 +190,16 @@ document.addEventListener("keydown", (evt) => {
   }
 });
 
-const showInputError = () => {
+const showInputError = (
+  inputElement,
+  inputError,
+  errorVisible,
+  errorMessage
+) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add(`${inputError}`);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(`${errorVisible}`);
 };
 
 const enableValidation = ({
