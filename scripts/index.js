@@ -147,23 +147,14 @@ closeImage.addEventListener("click", () => {
   popupViewImg.classList.remove("popup_opened");
 });
 
-//Ouvintes de evento do tipo 'click' que fecham os respectivso popups
-popup.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("popup")) {
-    popup.classList.remove("popup_opened");
-  }
-});
-
-popupViewImg.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("popup")) {
-    popupViewImg.classList.remove("popup_opened");
-  }
-});
-
-popupAdd.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("popup")) {
-    popupAdd.classList.remove("popup_opened");
-  }
+//Ouvinte de evento do tipo 'click' que fecha os respectivos popups com a classe 'popup'
+const allPopups = Array.from(document.querySelectorAll(".popup"));
+allPopups.forEach((pop) => {
+  pop.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("popup")) {
+      pop.classList.remove("popup_opened");
+    }
+  });
 });
 
 //Ouvinte que fecha os popups quando a tecla esc foir pressionada
@@ -175,6 +166,7 @@ document.addEventListener("keydown", (evt) => {
   }
 });
 
+//Funções que compõem o sistema de validação das entradas dos formulários
 const showInputError = (
   formElement,
   inputElement,
