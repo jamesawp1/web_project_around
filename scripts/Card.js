@@ -60,6 +60,12 @@ class Card {
       .addEventListener("click", () => {
         this._handleDeleteButtonClick();
       });
+
+    this._element
+      .querySelector(".gallery__like-button")
+      .addEventListener("click", (evt) => {
+        this._handleLikeButtonClick(evt);
+      });
   }
 
   _handleDeleteButtonClick() {
@@ -67,6 +73,13 @@ class Card {
       .querySelector(".gallery__delete-button")
       .closest(".gallery__card")
       .remove();
+  }
+
+  _handleLikeButtonClick(evt) {
+    if (evt.target.getAttribute("src") === "./images/button__icon.svg") {
+      return evt.target.setAttribute("src", "./images/button__icon_active.svg");
+    }
+    return evt.target.setAttribute("src", "./images/button__icon.svg");
   }
 }
 
