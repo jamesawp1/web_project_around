@@ -15,4 +15,13 @@ class FormValidator {
     this._errorElement.textContent = this._errorMessage;
     this._errorElement.classList.add(`${this._errorVisible}`);
   };
+
+  _hideInputError = () => {
+    this._errorElement = this._formElement.querySelector(
+      `.${this._inputElement.id}-error`
+    );
+    this._inputElement.classList.remove(`${this._inputError}`);
+    this._errorElement.textContent = "";
+    this._errorElement.classList.remove(`${this._errorVisible}`);
+  };
 }
