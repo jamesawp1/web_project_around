@@ -24,4 +24,12 @@ class FormValidator {
     this._errorElement.textContent = "";
     this._errorElement.classList.remove(`${this._errorVisible}`);
   };
+
+  _checkInputValidity = () => {
+    if (!this._inputElement.validity.valid) {
+      showInputError();
+    } else {
+      hideInputError();
+    }
+  };
 }
