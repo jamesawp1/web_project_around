@@ -38,4 +38,15 @@ class FormValidator {
       return !inputElement.validity.valid;
     });
   }
+
+  _toggleButtonState(inputList, button, buttonInactive) {
+    const buttonElements = document.querySelectorAll(`${button}`);
+    buttonElements.forEach((buttonElement) => {
+      if (hasInvalidInput(inputList)) {
+        buttonElement.classList.add(`${buttonInactive}`);
+      } else {
+        buttonElement.classList.remove(`${buttonInactive}`);
+      }
+    });
+  }
 }
