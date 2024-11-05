@@ -1,10 +1,21 @@
+const config = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
+
+const formElements = document.querySelectorAll(".popup__form");
+
 class FormValidator {
   constructor(selectors, form) {
-    this._formElement = selectors.formElement;
-    this._inputElement = selectors.inputElement;
-    this._inputError = selectors.inputError;
-    this._errorVisible = selectors.errorVisible;
-    this._errorMessage = selectors.errorMessage;
+    this._formElement = form;
+    this._inputElement = selectors.inputSelector;
+    this._buttonElement = selectors.submitButtonSelector;
+    this._buttonInactive = selectors.inactiveButtonClass;
+    this._inputError = selectors.inputErrorClass;
+    this._errorVisible = selectors.errorClass;
   }
 
   _showInputError() {
