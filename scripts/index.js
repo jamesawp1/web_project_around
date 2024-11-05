@@ -87,7 +87,7 @@ const template = document.querySelector("#template").content;
 const cardElement = template.querySelector(".gallery__card");
 
 //Função que faz um card aparecer
-/*function renderCard(card) {
+function renderCard(card) {
   const cardClone = cardElement.cloneNode(true);
   const imageItem = cardClone.querySelector(".gallery__card-image");
 
@@ -132,7 +132,7 @@ const cardElement = template.querySelector(".gallery__card");
 }
 
 //Faz os cards iniciais aparecerem, com base nas informações listadas no objeto inicialCards
-
+/*
 initialCards.forEach((card, index) => {
   const cardItem = renderCard(card);
   gallery.append(cardItem);
