@@ -27,8 +27,8 @@ const initialCards = [
 
 class Card {
   constructor(data, selector) {
-    this._text = data.text;
-    this._image = data.image;
+    this._text = data.name;
+    this._image = data.link;
     this._selector = selector;
   }
 
@@ -42,6 +42,7 @@ class Card {
 
   generateCard() {
     this._element = this._getElement();
+    this._setEventListeners();
 
     this._element.querySelector(".gallery__card-name").textContent = this._text;
     this._element
@@ -57,8 +58,8 @@ class Card {
   _setEventListeners() {
     this._element
       .querySelector(".gallery__delete-button")
-      .addEventListener("click", () => {
-        this._handleDeleteButtonClick();
+      .addEventListener("click", (evt) => {
+        this._handleDeleteButtonClick(evt);
       });
 
     this._element
@@ -68,11 +69,8 @@ class Card {
       });
   }
 
-  _handleDeleteButtonClick() {
-    this._element
-      .querySelector(".gallery__delete-button")
-      .closest(".gallery__card")
-      .remove();
+  _handleDeleteButtonClick(evt) {
+    evt.target.closest(".gallery__card").remove();
   }
 
   _handleLikeButtonClick(evt) {

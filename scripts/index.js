@@ -56,7 +56,7 @@ addCardForm.addEventListener("submit", (evt) => {
   popupAdd.classList.toggle("popup_opened");
 });
 
-const initialCards = [
+/*const initialCards = [
   {
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
@@ -81,13 +81,13 @@ const initialCards = [
     name: "Lago di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
-];
+];*/
 
 const template = document.querySelector("#template").content;
 const cardElement = template.querySelector(".gallery__card");
 
 //Função que faz um card aparecer
-function renderCard(card) {
+/*function renderCard(card) {
   const cardClone = cardElement.cloneNode(true);
   const imageItem = cardClone.querySelector(".gallery__card-image");
 
@@ -136,7 +136,7 @@ const gallery = document.querySelector(".gallery");
 initialCards.forEach((card, index) => {
   const cardItem = renderCard(card);
   gallery.append(cardItem);
-});
+});*/
 
 //Váriavel usada para abrir a imagem
 const popupViewImg = document.querySelector(".popup-view-image");
