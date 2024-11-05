@@ -132,11 +132,12 @@ const cardElement = template.querySelector(".gallery__card");
 }
 
 //Faz os cards iniciais aparecerem, com base nas informações listadas no objeto inicialCards
-const gallery = document.querySelector(".gallery");
+
 initialCards.forEach((card, index) => {
   const cardItem = renderCard(card);
   gallery.append(cardItem);
 });*/
+const gallery = document.querySelector(".gallery");
 
 //Váriavel usada para abrir a imagem
 const popupViewImg = document.querySelector(".popup-view-image");
