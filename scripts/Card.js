@@ -26,9 +26,9 @@ const initialCards = [
 ];
 
 class Card {
-  constructor(text, image, selector) {
-    this._text = text;
-    this._image = image;
+  constructor(data, selector) {
+    this._text = data.text;
+    this._image = data.image;
     this._selector = selector;
   }
 
@@ -56,7 +56,7 @@ class Card {
 }
 
 initialCards.forEach((item) => {
-  const card = new Card(item.name, item.link, "#template");
+  const card = new Card(item, "#template");
 
   const cardElement = card.generateCard();
 
