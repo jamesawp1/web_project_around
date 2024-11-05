@@ -53,6 +53,21 @@ class Card {
 
     return this._element;
   }
+
+  _setEventListeners() {
+    this._element
+      .querySelector(".gallery__delete-button")
+      .addEventListener("click", () => {
+        this._handleDeleteButtonClick();
+      });
+  }
+
+  _handleDeleteButtonClick() {
+    this._element
+      .querySelector(".gallery__delete-button")
+      .closest(".gallery__card")
+      .remove();
+  }
 }
 
 initialCards.forEach((item) => {
