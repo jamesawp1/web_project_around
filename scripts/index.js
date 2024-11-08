@@ -105,6 +105,3 @@ forms.forEach((item) => {
 });
 
 //Váriavel que engloba as images de todos os cards
-export const cardImages = Array.from(
-  document.querySelectorAll(".gallery__card-image")
-);

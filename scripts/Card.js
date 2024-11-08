@@ -40,6 +40,12 @@ export class Card {
       .addEventListener("click", (evt) => {
         this._handleLikeButtonClick(evt);
       });
+
+    this._element
+      .querySelector(".gallery__card-image")
+      .addEventListener("click", (evt) => {
+        this._handleOpenImage(evt);
+      });
   }
 
   _handleDeleteButtonClick(evt) {
@@ -51,5 +57,22 @@ export class Card {
       return evt.target.setAttribute("src", "./images/button__icon_active.svg");
     }
     return evt.target.setAttribute("src", "./images/button__icon.svg");
+  }
+
+  _handleOpenImage(evt) {
+    const popupViewImg = document.querySelector(".popup-view-image");
+
+    popupViewImg.classList.toggle("popup_opened");
+    popupViewImg.querySelector(".popup-view-image__image").src = evt.target.src;
+    popupViewImg.querySelector(".popup-view-image__image").alt = evt.target.alt;
+    popupViewImg.querySelector(".popup-view-image__title").textContent =
+      evt.target.alt;
+
+    const closePopupImage = popupViewImg.querySelector(
+      ".popup-view-image__close-button"
+    );
+    closePopupImage.addEventListener("click", () => {
+      popupViewImg.classList.remove("popup_opened");
+    });
   }
 }

@@ -6,7 +6,6 @@ import {
   popupAdd,
   closeAddPopup,
   allPopups,
-  cardImages,
 } from "./index.js";
 
 //Abre e fecha o popup de edição de nome e profissão
@@ -45,7 +44,7 @@ document.addEventListener("keydown", (evt) => {
 });
 
 //Método que itera pelas imagens dos cards adicionando a funcionalidade de abrí-las em 'tela cheia'
-cardImages.forEach((image) => {
+/*cardImages.forEach((image) => {
   const popupViewImg = document.querySelector(".popup-view-image");
   image.addEventListener("click", (evt) => {
     popupViewImg.classList.toggle("popup_opened");
@@ -61,4 +60,4 @@ cardImages.forEach((image) => {
   closePopupImage.addEventListener("click", () => {
     popupViewImg.classList.remove("popup_opened");
   });
-});
+});*/
