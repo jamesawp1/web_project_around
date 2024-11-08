@@ -123,17 +123,18 @@ initialCards.forEach((item) => {
       return evt.target.setAttribute("src", "./images/button__icon.svg");
     });
 
-  imageItem.addEventListener("click", () => {
-    popupViewImg.classList.toggle("popup_opened");
-    popupViewImg.querySelector(".popup-view-image__image").src = card.link;
-    popupViewImg.querySelector(".popup-view-image__image").alt = card.name;
-    popupViewImg.querySelector(".popup-view-image__title").textContent =
-      card.name;
-  });
+
 
   return cardClone;
 }*/
 
+/*imageItem.addEventListener("click", () => {
+  popupViewImg.classList.toggle("popup_opened");
+  popupViewImg.querySelector(".popup-view-image__image").src = card.link;
+  popupViewImg.querySelector(".popup-view-image__image").alt = card.name;
+  popupViewImg.querySelector(".popup-view-image__title").textContent =
+    card.name;
+});*/
 //Váriavel usada para abrir a imagem
 const popupViewImg = document.querySelector(".popup-view-image");
 
@@ -143,23 +144,7 @@ closeImage.addEventListener("click", () => {
   popupViewImg.classList.remove("popup_opened");
 });
 
-//Ouvinte de evento do tipo 'click' que fecha os respectivos popups com a classe 'popup'
-const allPopups = Array.from(document.querySelectorAll(".popup"));
-allPopups.forEach((pop) => {
-  pop.addEventListener("click", (evt) => {
-    if (evt.target.classList.contains("popup")) {
-      pop.classList.remove("popup_opened");
-    }
-  });
-});
+//Variável do ouvinte de evento que fecha os popups com a classe 'popup'
+export const allPopups = Array.from(document.querySelectorAll(".popup"));
 
 //Ouvinte que fecha os popups quando a tecla esc foir pressionada
-document.addEventListener("keydown", (evt) => {
-  allPopups.forEach((pop) => {
-    if (evt.key === "Escape") {
-      pop.classList.remove("popup_opened");
-      pop.classList.remove("popup_opened");
-      pop.classList.remove("popup_opened");
-    }
-  });
-});

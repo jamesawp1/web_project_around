@@ -5,6 +5,7 @@ import {
   addButton,
   popupAdd,
   closeAddPopup,
+  allPopups,
 } from "./index.js";
 
 //Abre e fecha o popup de edição de nome e profissão
@@ -21,4 +22,23 @@ addButton.addEventListener("click", () => {
 });
 closeAddPopup.addEventListener("click", () => {
   popupAdd.classList.toggle("popup_opened");
+});
+
+////Ouvinte de evento do tipo 'click' que fecha os respectivos popups com a classe 'popup'
+allPopups.forEach((pop) => {
+  pop.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("popup")) {
+      pop.classList.remove("popup_opened");
+    }
+  });
+});
+
+document.addEventListener("keydown", (evt) => {
+  allPopups.forEach((pop) => {
+    if (evt.key === "Escape") {
+      pop.classList.remove("popup_opened");
+      pop.classList.remove("popup_opened");
+      pop.classList.remove("popup_opened");
+    }
+  });
 });
