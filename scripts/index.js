@@ -85,49 +85,6 @@ initialCards.forEach((item) => {
   document.querySelector(".gallery").append(cardElement);
 });
 
-//const template = document.querySelector("#template").content;
-
-//const cardElement = template.querySelector(".gallery__card");
-
-//Função que faz um card aparecer
-/*function renderCard(card) {
-  //const cardClone = cardElement.cloneNode(true);
-  const imageItem = cardClone.querySelector(".gallery__card-image");
-
-  cardClone.querySelector(".gallery__card-name").textContent = card.name;
-
-  cardClone
-    .querySelector(".gallery__card-image")
-    .setAttribute("src", card.link);
-
-  cardClone
-    .querySelector(".gallery__card-image")
-    .setAttribute("alt", card.name);
-
-  //Exclui o card
-  const deleteButton = cardClone.querySelector(".gallery__delete-icon");
-  deleteButton.addEventListener("click", () => {
-    deleteButton.closest(".gallery__card").remove();
-  });
-
-  //Alterna o valor do atributo do botão de "curtir"
-  cardClone
-    .querySelector(".gallery__like-icon")
-    .addEventListener("click", (evt) => {
-      if (evt.target.getAttribute("src") === "./images/button__icon.svg") {
-        return evt.target.setAttribute(
-          "src",
-          "./images/button__icon_active.svg"
-        );
-      }
-      return evt.target.setAttribute("src", "./images/button__icon.svg");
-    });
-
-
-
-  return cardClone;
-}*/
-
 /*imageItem.addEventListener("click", () => {
   popupViewImg.classList.toggle("popup_opened");
   popupViewImg.querySelector(".popup-view-image__image").src = card.link;
@@ -146,5 +103,3 @@ closeImage.addEventListener("click", () => {
 
 //Variável do ouvinte de evento que fecha os popups com a classe 'popup'
 export const allPopups = Array.from(document.querySelectorAll(".popup"));
-
-//Ouvinte que fecha os popups quando a tecla esc foir pressionada
