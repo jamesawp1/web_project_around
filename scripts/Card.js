@@ -44,7 +44,7 @@ export class Card {
     this._element
       .querySelector(".gallery__card-image")
       .addEventListener("click", (evt) => {
-        this._handleOpenImage(evt);
+        this._handleOpenAndCloseImage(evt);
       });
   }
 
@@ -59,7 +59,7 @@ export class Card {
     return evt.target.setAttribute("src", "./images/button__icon.svg");
   }
 
-  _handleOpenImage(evt) {
+  _handleOpenAndCloseImage(evt) {
     const popupViewImg = document.querySelector(".popup-view-image");
 
     popupViewImg.classList.toggle("popup_opened");
