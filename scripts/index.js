@@ -103,5 +103,3 @@ forms.forEach((item) => {
 
   formValidate.enableValidation();
 });
-
-//Váriavel que engloba as images de todos os cards

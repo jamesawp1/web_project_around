@@ -42,22 +42,3 @@ document.addEventListener("keydown", (evt) => {
     }
   });
 });
-
-//Método que itera pelas imagens dos cards adicionando a funcionalidade de abrí-las em 'tela cheia'
-/*cardImages.forEach((image) => {
-  const popupViewImg = document.querySelector(".popup-view-image");
-  image.addEventListener("click", (evt) => {
-    popupViewImg.classList.toggle("popup_opened");
-    popupViewImg.querySelector(".popup-view-image__image").src = evt.target.src;
-    popupViewImg.querySelector(".popup-view-image__image").alt = evt.target.alt;
-    popupViewImg.querySelector(".popup-view-image__title").textContent =
-      evt.target.alt;
-  });
-
-  const closePopupImage = popupViewImg.querySelector(
-    ".popup-view-image__close-button"
-  );
-  closePopupImage.addEventListener("click", () => {
-    popupViewImg.classList.remove("popup_opened");
-  });
-});*/
