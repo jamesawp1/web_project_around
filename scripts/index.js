@@ -1,15 +1,7 @@
-const editButton = document.querySelector(".profile__edit-button");
-const popup = document.querySelector(".popup");
-const closePopupButton = document.querySelector(".popup__close-button");
+export const editButton = document.querySelector(".profile__edit-button");
+export const popup = document.querySelector(".popup");
+export const closePopupButton = document.querySelector(".popup__close-button");
 const popupInput = document.querySelectorAll(".popup__input");
-
-//Abre e fecha o popup de edição de nome e profissão
-editButton.addEventListener("click", function () {
-  popup.classList.toggle("popup_opened");
-});
-closePopupButton.addEventListener("click", function () {
-  popup.classList.toggle("popup_opened");
-});
 
 //Função que permite o usuário alterar o nome e profissão
 const formElement = document.querySelector(".popup__form");
@@ -25,16 +17,12 @@ function handleProfileFormSubmit(evt) {
 }
 formElement.addEventListener("submit", handleProfileFormSubmit);
 
-//Abre e fecha o popup que permite adicionar mais cards
-const addButton = document.querySelector(".profile__add-button");
-const popupAdd = document.querySelector(".popup-add-card");
-const closeAddPopup = document.querySelector(".popup-add-card__close-button");
-addButton.addEventListener("click", () => {
-  popupAdd.classList.toggle("popup_opened");
-});
-closeAddPopup.addEventListener("click", () => {
-  popupAdd.classList.toggle("popup_opened");
-});
+//Variáveis usadas no listener que abre e fecha o popup que adiciona mais cards
+export const addButton = document.querySelector(".profile__add-button");
+export const popupAdd = document.querySelector(".popup-add-card");
+export const closeAddPopup = document.querySelector(
+  ".popup-add-card__close-button"
+);
 
 //Adiciona um card com as informações inseridas pelo usuário
 const placeTitle = document.querySelector("#input-place-title");
