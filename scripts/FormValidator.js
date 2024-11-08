@@ -11,7 +11,6 @@ export class FormValidator {
   _showInputError(inputElement, errorMessage) {
     const errorElement = inputElement.nextElementSibling;
 
-    console.log(errorElement);
     inputElement.classList.add(`${this._inputError}`);
     errorElement.classList.add(`${this._errorVisible}`);
     errorElement.textContent = errorMessage;
@@ -19,7 +18,6 @@ export class FormValidator {
 
   _hideInputError(inputElement) {
     const errorElement = inputElement.nextElementSibling;
-    console.log(errorElement);
     inputElement.classList.remove(`${this._inputError}`);
     errorElement.classList.remove(`${this._errorVisible}`);
     errorElement.textContent = "";
