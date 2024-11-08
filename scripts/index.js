@@ -1,3 +1,5 @@
+import { Card } from "./Card.js";
+
 export const editButton = document.querySelector(".profile__edit-button");
 export const popup = document.querySelector(".popup");
 export const closePopupButton = document.querySelector(".popup__close-button");
@@ -31,10 +33,13 @@ const addCardForm = document.querySelector(".popup__form-add-card");
 addCardForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
-  const newCard = renderCard({
-    name: placeTitle.value,
-    link: placeUrl.value,
-  });
+  const newCard = new Card(
+    {
+      name: placeTitle.value,
+      link: placeUrl.value,
+    },
+    "#template"
+  );
 
   gallery.prepend(newCard);
 
@@ -44,7 +49,7 @@ addCardForm.addEventListener("submit", (evt) => {
   popupAdd.classList.toggle("popup_opened");
 });
 
-/*const initialCards = [
+const initialCards = [
   {
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
@@ -69,14 +74,22 @@ addCardForm.addEventListener("submit", (evt) => {
     name: "Lago di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
-];*/
+];
+
+initialCards.forEach((item) => {
+  const card = new Card(item, "#template");
+
+  const cardElement = card.generateCard();
+
+  document.querySelector(".gallery").append(cardElement);
+});
 
 const template = document.querySelector("#template").content;
-const cardElement = template.querySelector(".gallery__card");
+//const cardElement = template.querySelector(".gallery__card");
 
 //Função que faz um card aparecer
-function renderCard(card) {
-  const cardClone = cardElement.cloneNode(true);
+/*function renderCard(card) {
+  //const cardClone = cardElement.cloneNode(true);
   const imageItem = cardClone.querySelector(".gallery__card-image");
 
   cardClone.querySelector(".gallery__card-name").textContent = card.name;
@@ -117,7 +130,7 @@ function renderCard(card) {
   });
 
   return cardClone;
-}
+}*/
 
 //Faz os cards iniciais aparecerem, com base nas informações listadas no objeto inicialCards
 /*

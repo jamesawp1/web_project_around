@@ -1,31 +1,4 @@
-const initialCards = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-  {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-  },
-  {
-    name: "Parque Nacional da Vanoise ",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-  },
-];
-
-class Card {
+export class Card {
   constructor(data, selector) {
     this._text = data.name;
     this._image = data.link;
@@ -80,11 +53,3 @@ class Card {
     return evt.target.setAttribute("src", "./images/button__icon.svg");
   }
 }
-
-initialCards.forEach((item) => {
-  const card = new Card(item, "#template");
-
-  const cardElement = card.generateCard();
-
-  document.querySelector(".gallery").append(cardElement);
-});
