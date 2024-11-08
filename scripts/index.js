@@ -26,22 +26,23 @@ export const closeAddPopup = document.querySelector(
   ".popup-add-card__close-button"
 );
 
-//Adiciona um card com as informações inseridas pelo usuário
+//Adiciona um card com base nas informações inseridas pelo usuário
 const placeTitle = document.querySelector("#input-place-title");
 const placeUrl = document.querySelector("#input-place-url");
 const addCardForm = document.querySelector(".popup__form-add-card");
 addCardForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
-  const newCard = new Card(
-    {
-      name: placeTitle.value,
-      link: placeUrl.value,
-    },
-    "#template"
-  );
+  const userCards = {
+    name: placeTitle.value,
+    link: placeUrl.value,
+  };
 
-  gallery.prepend(newCard);
+  const newCard = new Card(userCards, "#template");
+
+  const cardElementUser = newCard.generateCard();
+
+  document.querySelector(".gallery").prepend(cardElementUser);
 
   placeTitle.value = "";
   placeUrl.value = "";
@@ -84,7 +85,8 @@ initialCards.forEach((item) => {
   document.querySelector(".gallery").append(cardElement);
 });
 
-const template = document.querySelector("#template").content;
+//const template = document.querySelector("#template").content;
+
 //const cardElement = template.querySelector(".gallery__card");
 
 //Função que faz um card aparecer
@@ -131,14 +133,6 @@ const template = document.querySelector("#template").content;
 
   return cardClone;
 }*/
-
-//Faz os cards iniciais aparecerem, com base nas informações listadas no objeto inicialCards
-/*
-initialCards.forEach((card, index) => {
-  const cardItem = renderCard(card);
-  gallery.append(cardItem);
-});*/
-const gallery = document.querySelector(".gallery");
 
 //Váriavel usada para abrir a imagem
 const popupViewImg = document.querySelector(".popup-view-image");
