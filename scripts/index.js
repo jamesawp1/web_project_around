@@ -87,18 +87,7 @@ initialCards.forEach((item) => {
   document.querySelector(".gallery").append(cardElement);
 });
 
-/*imageItem.addEventListener("click", () => {
-  popupViewImg.classList.toggle("popup_opened");
-  popupViewImg.querySelector(".popup-view-image__image").src = card.link;
-  popupViewImg.querySelector(".popup-view-image__image").alt = card.name;
-  popupViewImg.querySelector(".popup-view-image__title").textContent =
-    card.name;
-});*/
-//Váriavel usada para abrir a imagem
-const popupViewImg = document.querySelector(".popup-view-image");
-
-//eventListener para fechar a imagem
-const closeImage = document.querySelector(".popup-view-image__close-button");
-closeImage.addEventListener("click", () => {
-  popupViewImg.classList.remove("popup_opened");
-});
+//Váriavel que engloba as images de todos os cards
+export const cardImages = Array.from(
+  document.querySelectorAll(".gallery__card-image")
+);
