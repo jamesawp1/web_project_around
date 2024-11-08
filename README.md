@@ -6,4 +6,6 @@
 
 # ATUALIZAÇÃO: Nesse projeto, a maneira pela qual as imagens são carregadas foi atualizada. Agora, as imagens iniciais são carregadas - de um servidor externo - via JS.
 
+# ATUALIZAÇÃO 2.0: No Sprint dez, as alterações implementas se dão exclusivamente na parte do JS. Com foco na POO, a geração dos cartões iniciais - bem como os gerados por usuários - foi designada à sintaxe das Classes, pela qual é criado objetos que consistem em dados, métodos, funções etc. Também, o projeto foi dividido em módulos a fim de tornar o código como um todo mais claro e organizado.
+
 # Link do projeto via GitHub Pages: https://jamesawp1.github.io/web_project_around/
