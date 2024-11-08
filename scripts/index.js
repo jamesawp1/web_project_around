@@ -1,4 +1,5 @@
 import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 
 export const editButton = document.querySelector(".profile__edit-button");
 export const popup = document.querySelector(".popup");
@@ -85,6 +86,22 @@ initialCards.forEach((item) => {
   const cardElement = card.generateCard();
 
   document.querySelector(".gallery").append(cardElement);
+});
+
+const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
+
+const forms = Array.from(document.querySelectorAll(".popup__form"));
+forms.forEach((item) => {
+  const formValidate = new FormValidator(config, item);
+
+  formValidate.enableValidation();
 });
 
 //Váriavel que engloba as images de todos os cards

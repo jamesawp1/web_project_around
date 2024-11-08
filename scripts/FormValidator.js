@@ -1,15 +1,4 @@
-const config = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
-
-const forms = Array.from(document.querySelectorAll(".popup__form"));
-
-class FormValidator {
+export class FormValidator {
   constructor(selectors, form) {
     this._inputElement = selectors.inputSelector;
     this._buttonElement = selectors.submitButtonSelector;
@@ -82,9 +71,3 @@ class FormValidator {
     this._validateInputs();
   }
 }
-
-forms.forEach((item) => {
-  const formValidate = new FormValidator(config, item);
-
-  formValidate.enableValidation();
-});
