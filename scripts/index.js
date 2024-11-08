@@ -3,7 +3,16 @@ import { Card } from "./Card.js";
 export const editButton = document.querySelector(".profile__edit-button");
 export const popup = document.querySelector(".popup");
 export const closePopupButton = document.querySelector(".popup__close-button");
-const popupInput = document.querySelectorAll(".popup__input");
+
+//Variáveis usadas no listener que abre e fecha o popup que adiciona mais cards
+export const addButton = document.querySelector(".profile__add-button");
+export const popupAdd = document.querySelector(".popup-add-card");
+export const closeAddPopup = document.querySelector(
+  ".popup-add-card__close-button"
+);
+
+//Variável que engloba um array contendo todos os popups
+export const allPopups = Array.from(document.querySelectorAll(".popup"));
 
 //Função que permite o usuário alterar o nome e profissão
 const formElement = document.querySelector(".popup__form");
@@ -18,13 +27,6 @@ function handleProfileFormSubmit(evt) {
   popup.classList.toggle("popup_opened");
 }
 formElement.addEventListener("submit", handleProfileFormSubmit);
-
-//Variáveis usadas no listener que abre e fecha o popup que adiciona mais cards
-export const addButton = document.querySelector(".profile__add-button");
-export const popupAdd = document.querySelector(".popup-add-card");
-export const closeAddPopup = document.querySelector(
-  ".popup-add-card__close-button"
-);
 
 //Adiciona um card com base nas informações inseridas pelo usuário
 const placeTitle = document.querySelector("#input-place-title");
@@ -100,6 +102,3 @@ const closeImage = document.querySelector(".popup-view-image__close-button");
 closeImage.addEventListener("click", () => {
   popupViewImg.classList.remove("popup_opened");
 });
-
-//Variável do ouvinte de evento que fecha os popups com a classe 'popup'
-export const allPopups = Array.from(document.querySelectorAll(".popup"));
