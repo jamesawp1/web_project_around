@@ -37,8 +37,6 @@ document.addEventListener("keydown", (evt) => {
   allPopups.forEach((pop) => {
     if (evt.key === "Escape") {
       pop.classList.remove("popup_opened");
-      pop.classList.remove("popup_opened");
-      pop.classList.remove("popup_opened");
     }
   });
 });
