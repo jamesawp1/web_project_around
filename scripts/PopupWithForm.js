@@ -17,4 +17,21 @@ class PopupWithForm extends Popup {
 
     return this._formValues;
   }
+
+  setEventListeners() {
+    this._selector.addEventListener("submit", () => {
+      evt.preventDefault();
+
+      this._selector.querySelector;
+    });
+    function handleProfileFormSubmit(evt) {
+      const nameInput = document.querySelector("#input-name");
+      const jobInput = document.querySelector("#input-job");
+      const profileName = document.querySelector(".profile__title");
+      const profileJob = document.querySelector(".profile__subtitle");
+      profileName.textContent = nameInput.value;
+      profileJob.textContent = jobInput.value;
+      popup.classList.toggle("popup_opened");
+    }
+  }
 }
