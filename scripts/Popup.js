@@ -18,4 +18,16 @@ class Popup {
       }
     });
   }
+
+  setEventListeners() {
+    this._selector
+      .querySelector(".popup__close-button")
+      .addEventListener("click", (evt) => {
+        if (evt.target.classList.contains("popup")) {
+          this._selector.classList.remove("popup_opened");
+        }
+
+        this._selector.classList.remove("popup_opened");
+      });
+  }
 }
