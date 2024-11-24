@@ -12,14 +12,16 @@ export default class Popup {
   }
 
   _handleEscClose() {
-    this._selector.addEventListener("keydown", (evt) => {
-      if (evt.key === "Escape") {
-        this._selector.classList.remove("popup_opened");
-      }
-    });
+    if (evt.key === "Escape") {
+      this._selector.classList.remove("popup_opened");
+    }
   }
 
   setEventListeners() {
+    this._selector.addEventListener("keydown", () => {
+      this._handleEscClose();
+    });
+
     this._selector
       .querySelector(".popup__close-button")
       .addEventListener("click", (evt) => {
