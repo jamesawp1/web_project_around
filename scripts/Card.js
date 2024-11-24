@@ -41,11 +41,11 @@ export class Card {
         this._handleLikeButtonClick(evt);
       });
 
-    this._element
+    /*this._element
       .querySelector(".gallery__card-image")
       .addEventListener("click", (evt) => {
         this._handleOpenAndCloseImage(evt);
-      });
+      });*/
   }
 
   _handleDeleteButtonClick(evt) {
@@ -59,7 +59,7 @@ export class Card {
     return evt.target.setAttribute("src", "./images/button__icon.svg");
   }
 
-  _handleOpenAndCloseImage(evt) {
+  /*_handleOpenAndCloseImage(evt) {
     const popupViewImg = document.querySelector(".popup-view-image");
 
     popupViewImg.classList.toggle("popup_opened");
@@ -74,5 +74,5 @@ export class Card {
     closePopupImage.addEventListener("click", () => {
       popupViewImg.classList.remove("popup_opened");
     });
-  }
+  }*/
 }

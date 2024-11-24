@@ -8,6 +8,7 @@ import {
   allPopups,
 } from "./index.js";
 
+/*
 //Abre e fecha o popup de edição de nome e profissão
 editButton.addEventListener("click", function () {
   popup.classList.toggle("popup_opened");
