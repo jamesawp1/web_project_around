@@ -10,4 +10,12 @@ class Popup {
   close() {
     this._selector.classList.remove("popup_opened");
   }
+
+  _handleEscClose() {
+    this._selector.addEventListener("keydown", (evt) => {
+      if (evt.key === "Escape") {
+        this._selector.classList.remove("popup_opened");
+      }
+    });
+  }
 }
