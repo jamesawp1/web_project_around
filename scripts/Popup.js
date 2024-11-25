@@ -11,7 +11,7 @@ export default class Popup {
     this._selector.classList.remove("popup_opened");
   }
 
-  _handleEscClose() {
+  _handleEscClose(evt) {
     if (evt.key === "Escape") {
       this.close();
     }
@@ -24,8 +24,8 @@ export default class Popup {
         this.close();
       });
 
-    this._selector.addEventListener("keydown", () => {
-      this._handleEscClose();
+    this._selector.addEventListener("keydown", (evt) => {
+      this._handleEscClose(evt);
     });
 
     /*this._selector

@@ -40,4 +40,4 @@ document.addEventListener("keydown", (evt) => {
       pop.classList.remove("popup_opened");
     }
   });
-});
+});*/
