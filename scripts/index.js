@@ -2,6 +2,7 @@ import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
+import Section from "./Section.js";
 
 export const editButton = document.querySelector(".profile__edit-button");
 export const popup = document.querySelector(".popup");
@@ -82,13 +83,34 @@ const initialCards = [
   },
 ];
 
-initialCards.forEach((item) => {
+const popupWithImage = new PopupWithImage(".popup-view-image");
+const cardRenderer = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, "#template", {
+        handleCardClick: () => {
+          popupWithImage.open(item);
+        },
+      });
+
+      const cardElement = card.generateCard();
+      cardRenderer.addItem(cardElement);
+    },
+  },
+  ".gallery"
+);
+cardRenderer.renderItems();
+
+/////////////////
+
+/*initialCards.forEach((item) => {
   const card = new Card(item, "#template");
 
   const cardElement = card.generateCard();
 
   document.querySelector(".gallery").append(cardElement);
-});
+});*/
 
 const config = {
   formSelector: ".popup__form",

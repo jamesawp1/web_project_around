@@ -1,8 +1,9 @@
 export class Card {
-  constructor(data, selector) {
+  constructor(data, selector, { handleCardClick }) {
     this._text = data.name;
     this._image = data.link;
     this._selector = selector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getElement() {
@@ -41,11 +42,11 @@ export class Card {
         this._handleLikeButtonClick(evt);
       });
 
-    /*this._element
+    this._element
       .querySelector(".gallery__card-image")
-      .addEventListener("click", (evt) => {
-        this._handleOpenAndCloseImage(evt);
-      });*/
+      .addEventListener("click", () => {
+        this._handleCardClick();
+      });
   }
 
   _handleDeleteButtonClick(evt) {
