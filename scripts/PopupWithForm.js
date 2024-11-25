@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-class PopupWithForm extends Popup {
+export default class PopupWithForm extends Popup {
   constructor(submitFunction, popupSelector) {
     super(popupSelector);
     this._submit = submitFunction;
@@ -25,19 +25,16 @@ class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    this._selector.addEventListener("submit", () => {
+    this._selector.addEventListener("submit", (evt) => {
       evt.preventDefault();
 
-      this._selector.querySelector;
+      this._submit();
     });
-    function handleProfileFormSubmit(evt) {
-      const nameInput = document.querySelector("#input-name");
-      const jobInput = document.querySelector("#input-job");
-      const profileName = document.querySelector(".profile__title");
-      const profileJob = document.querySelector(".profile__subtitle");
-      profileName.textContent = nameInput.value;
-      profileJob.textContent = jobInput.value;
-      popup.classList.toggle("popup_opened");
-    }
+
+    this._selector
+      .querySelector(".popup__close-button")
+      .addEventListener("click", () => {
+        this.close();
+      });
   }
 }

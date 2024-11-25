@@ -3,6 +3,7 @@ import { FormValidator } from "./FormValidator.js";
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 import Section from "./Section.js";
+import PopupWithForm from "./PopupWithForm.js";
 
 export const editButton = document.querySelector(".profile__edit-button");
 export const popup = document.querySelector(".popup");
@@ -123,7 +124,8 @@ const config = {
 
 const forms = Array.from(document.querySelectorAll(".popup__form"));
 forms.forEach((item) => {
-  const formValidate = new FormValidator(config, item);
+  const popupWithForm = new PopupWithForm(item);
 
+  const formValidate = new FormValidator(config, item);
   formValidate.enableValidation();
 });

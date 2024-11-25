@@ -41,3 +41,14 @@ document.addEventListener("keydown", (evt) => {
     }
   });
 });*/
+
+//funcao responsavel pelo submit dos inputs
+/*function handleProfileFormSubmit(evt) {
+  const nameInput = document.querySelector("#input-name");
+  const jobInput = document.querySelector("#input-job");
+  const profileName = document.querySelector(".profile__title");
+  const profileJob = document.querySelector(".profile__subtitle");
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  popup.classList.toggle("popup_opened");
+}*/
