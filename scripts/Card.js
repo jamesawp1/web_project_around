@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   constructor(data, selector, { handleCardClick }) {
     this._text = data.name;
     this._image = data.link;
@@ -59,21 +59,4 @@ export class Card {
     }
     return evt.target.setAttribute("src", "./images/button__icon.svg");
   }
-
-  /*_handleOpenAndCloseImage(evt) {
-    const popupViewImg = document.querySelector(".popup-view-image");
-
-    popupViewImg.classList.toggle("popup_opened");
-    popupViewImg.querySelector(".popup-view-image__image").src = evt.target.src;
-    popupViewImg.querySelector(".popup-view-image__image").alt = evt.target.alt;
-    popupViewImg.querySelector(".popup-view-image__title").textContent =
-      evt.target.alt;
-
-    const closePopupImage = popupViewImg.querySelector(
-      ".popup-view-image__close-button"
-    );
-    closePopupImage.addEventListener("click", () => {
-      popupViewImg.classList.remove("popup_opened");
-    });
-  }*/
 }

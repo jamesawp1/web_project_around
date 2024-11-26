@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(selectors, form) {
     this._inputElement = selectors.inputSelector;
     this._buttonElement = selectors.submitButtonSelector;
