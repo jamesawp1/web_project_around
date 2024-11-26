@@ -28,14 +28,10 @@ export default class Popup {
       this._handleEscClose(evt);
     });
 
-    /*this._selector
-      .querySelector(".popup__close-button")
-      .addEventListener("click", (evt) => {
-        if (evt.target.classList.contains("popup")) {
-          this._selector.classList.remove("popup_opened");
-        }
-
-        this._selector.classList.remove("popup_opened");
-      });*/
+    document.addEventListener("click", (evt) => {
+      if (evt.target.classList.contains("popup")) {
+        this.close();
+      }
+    });
   }
 }
