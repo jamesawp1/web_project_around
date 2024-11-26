@@ -1,5 +1,10 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import Popup from "./Popup.js";
+import PopupWithImage from "./PopupWithImage.js";
+import Section from "./Section.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
 
 export const editButton = document.querySelector(".profile__edit-button");
 export const popup = document.querySelector(".popup");
@@ -15,8 +20,11 @@ export const closeAddPopup = document.querySelector(
 //Variável que engloba um array contendo todos os popups
 export const allPopups = Array.from(document.querySelectorAll(".popup"));
 
+const profileName = document.querySelector(".profile__title");
+const profileJob = document.querySelector(".profile__subtitle");
+
 //Função que permite o usuário alterar o nome e profissão
-const formElement = document.querySelector(".popup__form");
+/*const formElement = document.querySelector(".popup__form");
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   const nameInput = document.querySelector("#input-name");
@@ -27,10 +35,10 @@ function handleProfileFormSubmit(evt) {
   profileJob.textContent = jobInput.value;
   popup.classList.toggle("popup_opened");
 }
-formElement.addEventListener("submit", handleProfileFormSubmit);
+formElement.addEventListener("submit", handleProfileFormSubmit);*/
 
 //Adiciona um card com base nas informações inseridas pelo usuário
-const placeTitle = document.querySelector("#input-place-title");
+/*const placeTitle = document.querySelector("#input-place-title");
 const placeUrl = document.querySelector("#input-place-url");
 const addCardForm = document.querySelector(".popup__form-add-card");
 addCardForm.addEventListener("submit", (evt) => {
@@ -51,7 +59,7 @@ addCardForm.addEventListener("submit", (evt) => {
   placeUrl.value = "";
 
   popupAdd.classList.toggle("popup_opened");
-});
+});*/
 
 const initialCards = [
   {
@@ -80,13 +88,34 @@ const initialCards = [
   },
 ];
 
-initialCards.forEach((item) => {
+const popupWithImage = new PopupWithImage(".popup-view-image");
+const cardRenderer = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, "#template", {
+        handleCardClick: () => {
+          popupWithImage.setEventListeners(item);
+        },
+      });
+
+      const cardElement = card.generateCard();
+      cardRenderer.addItem(cardElement);
+    },
+  },
+  ".gallery"
+);
+cardRenderer.renderItems();
+
+/////////////////
+
+/*initialCards.forEach((item) => {
   const card = new Card(item, "#template");
 
   const cardElement = card.generateCard();
 
   document.querySelector(".gallery").append(cardElement);
-});
+});*/
 
 const config = {
   formSelector: ".popup__form",
@@ -100,6 +129,41 @@ const config = {
 const forms = Array.from(document.querySelectorAll(".popup__form"));
 forms.forEach((item) => {
   const formValidate = new FormValidator(config, item);
-
   formValidate.enableValidation();
+});
+
+const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
+  const card = new Card(formData, "#template", {
+    handleCardClick: () => {
+      popupWithImage.setEventListeners(formData);
+    },
+  });
+
+  const cardElement = card.generateCard();
+  cardRenderer.addItem(cardElement);
+});
+popupAddCard.setEventListeners();
+
+const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
+  const user = new UserInfo({
+    nameSelector: ".profile__title",
+    jobSelector: ".profile__subtitle",
+  });
+
+  user.setUserInfo(formData);
+});
+popupEditCard.setEventListeners();
+
+//Obtem os seletores de informações do perfil
+const initialUser = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__subtitle",
+});
+
+//Recupera o conteúdo do que estiver gravado nos seletores de initialUser e os repassa para o formulário
+editButton.addEventListener("click", () => {
+  const info = initialUser.getUserInfo();
+  document.querySelector("#input-name").value = info.nameTitle;
+  document.querySelector("#input-job").value = info.jobTitle;
+  popup.classList.toggle("popup_opened");
 });

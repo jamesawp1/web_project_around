@@ -1,8 +1,9 @@
 export class Card {
-  constructor(data, selector) {
+  constructor(data, selector, { handleCardClick }) {
     this._text = data.name;
     this._image = data.link;
     this._selector = selector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getElement() {
@@ -43,8 +44,8 @@ export class Card {
 
     this._element
       .querySelector(".gallery__card-image")
-      .addEventListener("click", (evt) => {
-        this._handleOpenAndCloseImage(evt);
+      .addEventListener("click", () => {
+        this._handleCardClick();
       });
   }
 
@@ -59,7 +60,7 @@ export class Card {
     return evt.target.setAttribute("src", "./images/button__icon.svg");
   }
 
-  _handleOpenAndCloseImage(evt) {
+  /*_handleOpenAndCloseImage(evt) {
     const popupViewImg = document.querySelector(".popup-view-image");
 
     popupViewImg.classList.toggle("popup_opened");
@@ -74,5 +75,5 @@ export class Card {
     closePopupImage.addEventListener("click", () => {
       popupViewImg.classList.remove("popup_opened");
     });
-  }
+  }*/
 }

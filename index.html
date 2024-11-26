@@ -66,7 +66,7 @@
         <h2 class="footer__copyright">&copy; 2024 Around The U.S.</h2>
       </footer>
 
-      <div class="popup">
+      <div class="popup popup-edit-profile">
         <div class="popup__container">
           <img
             class="popup__close-button"
@@ -79,8 +79,8 @@
               id="input-name"
               class="popup__input"
               type="text"
+              name="name"
               placeholder="Nome"
-              value="Jacques Cousteau"
               minlength="2"
               maxlength="40"
               required
@@ -93,8 +93,8 @@
               id="input-job"
               class="popup__input"
               type="text"
+              name="job"
               placeholder="Sobre Mim"
-              value="Explorador"
               minlength="2"
               maxlength="200"
               required
@@ -122,6 +122,7 @@
             <input
               id="input-place-title"
               class="popup__input"
+              name="name"
               placeholder="Título"
               minlength="2"
               maxlength="30"
@@ -134,6 +135,7 @@
             <input
               id="input-place-url"
               class="popup__input"
+              name="link"
               placeholder="URL da imagem"
               type="url"
               required
@@ -165,5 +167,10 @@
     <script type="module" src="./scripts/utils.js"></script>
     <script type="module" src="./scripts/Card.js"></script>
     <script type="module" src="./scripts/FormValidator.js"></script>
+    <script type="module" src="./scripts/Section.js"></script>
+    <script type="module" src="./scripts/Popup.js"></script>
+    <script type="module" src="./scripts/PopupWithImage.js"></script>
+    <script type="module" src="./scripts/PopupWithForm.js"></script>
+    <script type="module" src="./scripts/UserInfo.js"></script>
   </body>
 </html>
