@@ -134,7 +134,6 @@ const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
       popupWithImage.setEventListeners(formData);
     },
   });
-  console.log(formData);
 
   const cardElement = card.generateCard();
   cardRenderer.addItem(cardElement);
