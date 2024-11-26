@@ -4,6 +4,7 @@ import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 import Section from "./Section.js";
 import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
 
 export const editButton = document.querySelector(".profile__edit-button");
 export const popup = document.querySelector(".popup");
@@ -18,6 +19,9 @@ export const closeAddPopup = document.querySelector(
 
 //Variável que engloba um array contendo todos os popups
 export const allPopups = Array.from(document.querySelectorAll(".popup"));
+
+const profileName = document.querySelector(".profile__title");
+const profileJob = document.querySelector(".profile__subtitle");
 
 //Função que permite o usuário alterar o nome e profissão
 /*const formElement = document.querySelector(".popup__form");
@@ -138,5 +142,13 @@ const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
   const cardElement = card.generateCard();
   cardRenderer.addItem(cardElement);
 });
-
 popupAddCard.setEventListeners();
+
+const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
+  const user = new UserInfo({
+    nameSelector: ".profile__title",
+    jobSelector: ".profile__subtitle",
+  });
+
+  user.useraddN(formData);
+});
