@@ -52,3 +52,7 @@ document.addEventListener("keydown", (evt) => {
   profileJob.textContent = jobInput.value;
   popup.classList.toggle("popup_opened");
 }*/
+
+addButton.addEventListener("click", () => {
+  popupAdd.classList.toggle("popup_opened");
+});

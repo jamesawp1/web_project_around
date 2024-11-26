@@ -20,7 +20,7 @@ export const closeAddPopup = document.querySelector(
 export const allPopups = Array.from(document.querySelectorAll(".popup"));
 
 //Função que permite o usuário alterar o nome e profissão
-const formElement = document.querySelector(".popup__form");
+/*const formElement = document.querySelector(".popup__form");
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   const nameInput = document.querySelector("#input-name");
@@ -31,10 +31,10 @@ function handleProfileFormSubmit(evt) {
   profileJob.textContent = jobInput.value;
   popup.classList.toggle("popup_opened");
 }
-formElement.addEventListener("submit", handleProfileFormSubmit);
+formElement.addEventListener("submit", handleProfileFormSubmit);*/
 
 //Adiciona um card com base nas informações inseridas pelo usuário
-const placeTitle = document.querySelector("#input-place-title");
+/*const placeTitle = document.querySelector("#input-place-title");
 const placeUrl = document.querySelector("#input-place-url");
 const addCardForm = document.querySelector(".popup__form-add-card");
 addCardForm.addEventListener("submit", (evt) => {
@@ -55,7 +55,7 @@ addCardForm.addEventListener("submit", (evt) => {
   placeUrl.value = "";
 
   popupAdd.classList.toggle("popup_opened");
-});
+});*/
 
 const initialCards = [
   {
@@ -128,5 +128,16 @@ forms.forEach((item) => {
   formValidate.enableValidation();
 });
 
-const popupEditProfile = new PopupWithForm(".popup-edit-profile");
-popupEditProfile.setEventListeners();
+const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
+  const card = new Card(formData, "#template", {
+    handleCardClick: () => {
+      popupWithImage.setEventListeners(formData);
+    },
+  });
+  console.log(formData);
+
+  const cardElement = card.generateCard();
+  cardRenderer.addItem(cardElement);
+});
+
+popupAddCard.setEventListeners();
