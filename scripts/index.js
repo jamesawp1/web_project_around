@@ -153,3 +153,17 @@ const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
   user.setUserInfo(formData);
 });
 popupEditCard.setEventListeners();
+
+//Obtem os seletores de informações do perfil
+const initialUser = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__subtitle",
+});
+
+//Recupera o conteúdo do que estiver gravado nos seletores de initialUser e os repassa para o formulário
+editButton.addEventListener("click", () => {
+  const info = initialUser.getUserInfo();
+  document.querySelector("#input-name").value = info.nameTitle;
+  document.querySelector("#input-job").value = info.jobTitle;
+  popup.classList.toggle("popup_opened");
+});

@@ -57,6 +57,6 @@ addButton.addEventListener("click", () => {
   popupAdd.classList.toggle("popup_opened");
 });
 
-editButton.addEventListener("click", function () {
+/*editButton.addEventListener("click", function () {
   popup.classList.toggle("popup_opened");
-});
+});*/
