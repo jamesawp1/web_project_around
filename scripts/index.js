@@ -91,7 +91,7 @@ const cardRenderer = new Section(
     renderer: (item) => {
       const card = new Card(item, "#template", {
         handleCardClick: () => {
-          popupWithImage.open(item);
+          popupWithImage.setEventListeners(item);
         },
       });
 
@@ -124,8 +124,9 @@ const config = {
 
 const forms = Array.from(document.querySelectorAll(".popup__form"));
 forms.forEach((item) => {
-  const popupWithForm = new PopupWithForm(item);
-
   const formValidate = new FormValidator(config, item);
   formValidate.enableValidation();
 });
+
+const popupEditProfile = new PopupWithForm(".popup-edit-profile");
+popupEditProfile.setEventListeners();
