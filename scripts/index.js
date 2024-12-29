@@ -4,6 +4,7 @@ import Section from "./Section.js";
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
+import Api from "./Api.js";
 
 import {
   editButton,
@@ -14,6 +15,26 @@ import {
   profileName,
   profileJob,
 } from "./utils.js";
+
+let ownerId;
+//Instância da API
+const api = new Api({
+  baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
+  headers: {
+    authorization: "6385b06c-3fab-4ff6-983f-edc5df0c8278",
+    "Content-Type": "application/json",
+  },
+});
+
+//Informações do usuário iniciais
+api.getUserInfo().then((data) => {
+  const initialUserInfo = new UserInfo({
+    nameSelector: ".profile__title",
+    jobSelector: ".profile__subtitle",
+  });
+
+  initialUserInfo.setUserInfo(data);
+});
 
 //Adiciona cards iniciais junto da classe necessária para abrir a imagem dos cards
 const popupWithImage = new PopupWithImage(".popup-view-image");
