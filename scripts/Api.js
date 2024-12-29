@@ -50,4 +50,26 @@ export default class Api {
         console.log(`ERRO NA INSERÇÃO DAS INFOS: ${err}`);
       });
   }
+
+  postUserCard({ name, link }) {
+    fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(`ERRO NO ENVIO DO CARD: ${err}`);
+      });
+  }
 }

@@ -59,6 +59,21 @@ api.getInitialCards().then((cards) => {
     ".gallery"
   );
   cardRenderer.renderItems();
+  //
+
+  const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
+    const card = new Card(formData, "#template", {
+      handleCardClick: () => {
+        popupWithImage.setEventListeners(formData);
+      },
+    });
+
+    const cardElement = card.generateCard();
+    cardRenderer.addItem(cardElement);
+
+    api.postUserCard(formData);
+  });
+  popupAddCard.setEventListeners();
 });
 
 //Validação
@@ -78,17 +93,6 @@ forms.forEach((item) => {
 });
 
 //Popup que adiciona outros cards
-const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
-  const card = new Card(formData, "#template", {
-    handleCardClick: () => {
-      popupWithImage.setEventListeners(formData);
-    },
-  });
-
-  const cardElement = card.generateCard();
-  cardRenderer.addItem(cardElement);
-});
-popupAddCard.setEventListeners();
 
 //Adiciona informações do usuário à página
 const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
