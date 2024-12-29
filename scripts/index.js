@@ -96,8 +96,10 @@ const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
     nameSelector: ".profile__title",
     jobSelector: ".profile__subtitle",
   });
-  console.log(formData);
+
   user.setUserInfo(formData);
+
+  api.patchUserInfo(formData);
 });
 popupEditCard.setEventListeners();
 

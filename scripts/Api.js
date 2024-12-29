@@ -31,4 +31,23 @@ export default class Api {
         console.log(`ERRO NOS CARDS: ${err}`);
       });
   }
+
+  patchUserInfo({ name, about }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        about,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((err) => {
+        console.log(`ERRO NA INSERÇÃO DAS INFOS: ${err}`);
+      });
+  }
 }
