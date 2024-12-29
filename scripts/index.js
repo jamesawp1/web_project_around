@@ -38,23 +38,26 @@ api.getUserInfo().then((data) => {
 
 //Adiciona cards iniciais junto da classe necessária para abrir a imagem dos cards
 const popupWithImage = new PopupWithImage(".popup-view-image");
-const cardRenderer = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, "#template", {
-        handleCardClick: () => {
-          popupWithImage.setEventListeners(item);
-        },
-      });
 
-      const cardElement = card.generateCard();
-      cardRenderer.addItem(cardElement);
+api.getInitialCards().then((cards) => {
+  const cardRenderer = new Section(
+    {
+      items: cards,
+      renderer: (item) => {
+        const card = new Card(item, "#template", {
+          handleCardClick: () => {
+            popupWithImage.setEventListeners(item);
+          },
+        });
+
+        const cardElement = card.generateCard();
+        cardRenderer.addItem(cardElement);
+      },
     },
-  },
-  ".gallery"
-);
-cardRenderer.renderItems();
+    ".gallery"
+  );
+  cardRenderer.renderItems();
+});
 
 //Validação
 const config = {
