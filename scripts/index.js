@@ -16,17 +16,17 @@ import {
   profileJob,
 } from "./utils.js";
 
-let ownerId;
 //Instância da API
 const api = new Api({
   baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
   headers: {
-    authorization: "6385b06c-3fab-4ff6-983f-edc5df0c8278",
+    authorization: "1bcf196f-ab43-4370-b8e5-424f464e4782",
     "Content-Type": "application/json",
   },
 });
 
 //Informações do usuário iniciais
+let ownerId;
 api.getUserInfo().then((data) => {
   const initialUserInfo = new UserInfo({
     nameSelector: ".profile__title",
@@ -34,6 +34,8 @@ api.getUserInfo().then((data) => {
   });
 
   initialUserInfo.setUserInfo(data);
+
+  ownerId = data._id;
 });
 
 //Adiciona cards iniciais junto da classe necessária para abrir a imagem dos cards
@@ -94,7 +96,7 @@ const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
     nameSelector: ".profile__title",
     jobSelector: ".profile__subtitle",
   });
-
+  console.log(formData);
   user.setUserInfo(formData);
 });
 popupEditCard.setEventListeners();
