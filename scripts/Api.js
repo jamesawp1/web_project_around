@@ -72,4 +72,19 @@ export default class Api {
         console.log(`ERRO NO ENVIO DO CARD: ${err}`);
       });
   }
+
+  deleteUserCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((err) => {
+        console.log(`ERRO NA EXCLUSÃO DO CARD: ${err}`);
+      });
+  }
 }

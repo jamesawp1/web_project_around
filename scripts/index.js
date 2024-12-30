@@ -20,7 +20,7 @@ import {
 const api = new Api({
   baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
   headers: {
-    authorization: "1bcf196f-ab43-4370-b8e5-424f464e4782",
+    authorization: "3c8f21ec-ac73-4a15-93c1-17876f04bb91",
     "Content-Type": "application/json",
   },
 });
@@ -41,32 +41,59 @@ api.getUserInfo().then((data) => {
 //Adiciona cards iniciais junto da classe necessária para abrir a imagem dos cards
 const popupWithImage = new PopupWithImage(".popup-view-image");
 
+//delte
+async function handleDelete(cardItem, evt) {
+  return api.deleteUserCard(cardItem._id).then(() => {
+    evt.target.closest(".gallery__card").remove();
+  });
+}
+
 api.getInitialCards().then((cards) => {
   const cardRenderer = new Section(
     {
       items: cards,
       renderer: (item) => {
-        const card = new Card(item, "#template", {
-          handleCardClick: () => {
-            popupWithImage.setEventListeners(item);
+        const card = new Card(
+          item,
+          "#template",
+          {
+            handleCardClick: () => {
+              popupWithImage.setEventListeners(item);
+            },
           },
-        });
+          {
+            handleDeleteCard: (evt) => {
+              handleDelete(item, evt);
+            },
+          }
+        );
 
         const cardElement = card.generateCard();
         cardRenderer.addItem(cardElement);
       },
     },
+
     ".gallery"
   );
+
   cardRenderer.renderItems();
   //
 
   const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
-    const card = new Card(formData, "#template", {
-      handleCardClick: () => {
-        popupWithImage.setEventListeners(formData);
+    const card = new Card(
+      formData,
+      "#template",
+      {
+        handleCardClick: () => {
+          popupWithImage.setEventListeners(formData);
+        },
       },
-    });
+      {
+        handleDeleteClick: () => {
+          handleDelete(formData, cardElement);
+        },
+      }
+    );
 
     const cardElement = card.generateCard();
     cardRenderer.addItem(cardElement);
