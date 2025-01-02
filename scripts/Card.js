@@ -1,11 +1,18 @@
 export default class Card {
-  constructor(data, selector, { handleCardClick }, { handleDeleteCard }) {
+  constructor(
+    data,
+    selector,
+    { handleCardClick },
+    { handleDeleteCard },
+    { handleLikeButtonClick }
+  ) {
     this._data = data;
     this._text = data.name;
     this._image = data.link;
     this._selector = selector;
     this._handleCardClick = handleCardClick;
     this.handleDeleteCard = handleDeleteCard;
+    this.handleLikeButtonClick = handleLikeButtonClick;
   }
 
   _getElement() {
@@ -39,9 +46,9 @@ export default class Card {
     );
 
     if (this._data.isLiked) {
-      this._likeButton.setAttribute("src", this._likeButtonActive);
-    } else {
-      this._likeButton.setAttribute("src", this._likeButtonInactive);
+      this._likeButton.setAttribute("src", `${this._likeButtonActive}`);
+    } else if (!this._data.isLiked) {
+      this._likeButton.setAttribute("src", `${this._likeButtonInactive}`);
     }
 
     return this._element;
@@ -63,7 +70,7 @@ export default class Card {
     this._element
       .querySelector(".gallery__like-button")
       .addEventListener("click", (evt) => {
-        this._handleLikeButtonClick(evt);
+        this.handleLikeButtonClick(evt);
       });
 
     this._element
@@ -77,10 +84,10 @@ export default class Card {
     evt.target.closest(".gallery__card").remove();
   }*/
 
-  _handleLikeButtonClick(evt) {
+  /*_handleLikeButtonClick(evt) {
     if (evt.target.getAttribute("src") === "./images/button__icon.svg") {
       return evt.target.setAttribute("src", "./images/button__icon_active.svg");
     }
     return evt.target.setAttribute("src", "./images/button__icon.svg");
-  }
+  }*/
 }

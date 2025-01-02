@@ -87,4 +87,38 @@ export default class Api {
         console.log(`ERRO NA EXCLUSÃO DO CARD: ${err}`);
       });
   }
+
+  putLikeUserCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+      body: JSON.stringify({
+        isLiked: true,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+
+      .catch((err) => {
+        console.log(`ERRO No like DO CARD: ${err}`);
+      });
+  }
+
+  deleteLikeUserCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((err) => {
+        console.log(`ERRO No dislike DO CARD: ${err}`);
+      });
+  }
 }

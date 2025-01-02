@@ -48,6 +48,20 @@ async function handleDelete(cardItem, evt) {
   });
 }
 
+function handleLike(cardItem, evt) {
+  if (cardItem.isLiked) {
+    return (
+      api.deleteLikeUserCard(cardItem._id) &&
+      evt.target.setAttribute("src", "./images/button__icon.svg")
+    );
+  } else if (!cardItem.isLiked) {
+    return (
+      api.putLikeUserCard(cardItem._id) &&
+      evt.target.setAttribute("src", "./images/button__icon_active.svg")
+    );
+  }
+}
+
 api.getInitialCards().then((cards) => {
   const cardRenderer = new Section(
     {
@@ -64,6 +78,11 @@ api.getInitialCards().then((cards) => {
           {
             handleDeleteCard: (evt) => {
               handleDelete(item, evt);
+            },
+          },
+          {
+            handleLikeButtonClick: (evt) => {
+              handleLike(item, evt);
             },
           }
         );
@@ -91,6 +110,11 @@ api.getInitialCards().then((cards) => {
       {
         handleDeleteCard: (evt) => {
           handleDelete(formData, evt);
+        },
+      },
+      {
+        handleLikeButtonClick: (evt) => {
+          handleLike(formData, evt);
         },
       }
     );
