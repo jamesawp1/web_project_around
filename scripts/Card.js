@@ -1,5 +1,6 @@
 export default class Card {
   constructor(data, selector, { handleCardClick }, { handleDeleteCard }) {
+    this._data = data;
     this._text = data.name;
     this._image = data.link;
     this._selector = selector;
@@ -26,6 +27,22 @@ export default class Card {
     this._element
       .querySelector(".gallery__card-image")
       .setAttribute("alt", this._text);
+
+    this._likeButton = this._element.querySelector(".gallery__like-icon");
+    this._likeButtonActive = new URL(
+      "../images/button__icon_active.svg",
+      import.meta.url
+    );
+    this._likeButtonInactive = new URL(
+      "../images/button__icon.svg",
+      import.meta.url
+    );
+
+    if (this._data.isLiked) {
+      this._likeButton.setAttribute("src", this._likeButtonActive);
+    } else {
+      this._likeButton.setAttribute("src", this._likeButtonInactive);
+    }
 
     return this._element;
   }

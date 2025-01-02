@@ -89,8 +89,8 @@ api.getInitialCards().then((cards) => {
         },
       },
       {
-        handleDeleteClick: () => {
-          handleDelete(formData, cardElement);
+        handleDeleteCard: (evt) => {
+          handleDelete(formData, evt);
         },
       }
     );
