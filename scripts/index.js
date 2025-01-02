@@ -32,6 +32,7 @@ api.getUserInfo().then((data) => {
   const initialUserInfo = new UserInfo({
     nameSelector: ".profile__title",
     jobSelector: ".profile__subtitle",
+    pictureSelector: ".profile__image",
   });
 
   initialUserInfo.setUserInfo(data);
@@ -163,6 +164,7 @@ popupEditCard.setEventListeners();
 const initialUser = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__subtitle",
+  pictureSelector: ".profile__image",
 });
 
 //Recupera o conteúdo do que estiver gravado nos seletores de initialUser e os repassa para o formulário
@@ -174,10 +176,27 @@ editButton.addEventListener("click", () => {
 });
 
 //Troca a foto de perfil
-const popupPicture = new PopupWithForm(
-  ".popup-profile-picture",
-  (formData) => {}
-);
+const popupPicture = new PopupWithForm(".popup-profile-picture", (formData) => {
+  const button = document.querySelector(".popup__button");
+  button.textContent = "Salvando...";
+
+  api
+    .patchPicProfile(formData)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+    .then((userData) => {
+      initialUser.setUserInfo(userData);
+    })
+    .catch((err) => {
+      console.log(`ERRO NA MUDANÇA DE FOTO PERFIL: ${err}`);
+    })
+    .finally(() => {
+      button.textContent = "Salvar";
+    });
+});
 popupPicture.setEventListeners();
 
 changepicturePopup.addEventListener("click", () => {

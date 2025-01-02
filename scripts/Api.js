@@ -121,4 +121,14 @@ export default class Api {
         console.log(`ERRO No dislike DO CARD: ${err}`);
       });
   }
+
+  patchPicProfile(picLink) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: picLink.link,
+      }),
+    });
+  }
 }
