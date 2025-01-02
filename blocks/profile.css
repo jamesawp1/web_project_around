@@ -7,16 +7,37 @@
   gap: 30px;
 }
 
+.profile__picture-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__picture-container:hover .profile__image {
+  opacity: 40%;
+  cursor: pointer;
+}
+
+.profile__picture-container:hover .profile__edit-picture {
+  visibility: visible;
+}
+
 .profile__image {
+  position: relative;
   border-radius: 50%;
   width: 120px;
   height: 120px;
 }
 
+.profile__edit-picture {
+  visibility: hidden;
+  position: absolute;
+  z-index: 0;
+}
+
 .profile__info {
   padding: 0;
   margin: 0;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -21,11 +21,18 @@
 
       <main class="main">
         <section class="profile">
-          <img
-            class="profile__image"
-            src="./images/profile__image.jpg"
-            alt="Imagem de um senhor de idade."
-          />
+          <div class="profile__picture-container">
+            <img
+              class="profile__image"
+              src="./images/profile__image.jpg"
+              alt="Imagem de um senhor de idade."
+            />
+            <img
+              class="profile__edit-picture"
+              src="./images/icon__change-picture-profile.svg"
+              alt="Imagem representando uma caneta"
+            />
+          </div>
           <div class="profile__info">
             <div class="profile__info-wrapper">
               <h1 id="profile-name" class="profile__title">Jacq1</h1>
@@ -160,6 +167,32 @@
             <img class="popup-view-image__image" src="#" alt="" />
             <p class="popup-view-image__title"></p>
           </div>
+        </div>
+      </div>
+
+      <div class="popup popup-profile-picture">
+        <div class="popup__container">
+          <img
+            class="popup__close-button popup-profile-picture__close-button"
+            src="./images/close_icon.png"
+            alt="Botão de fechar o popup"
+          />
+          <h2 class="popup__title">Alterar a foto do perfil</h2>
+          <form class="popup__form popup__profile-picture">
+            <input
+              id="input-profile-picture"
+              class="popup__input"
+              name="link"
+              placeholder="URL da fotografia"
+              type="url"
+              required
+            />
+            <span
+              id="input-profile-picture-error"
+              class="popup__form-error input-profile-picture-error"
+            ></span>
+            <button type="submit" class="popup__button">Salvar</button>
+          </form>
         </div>
       </div>
     </div>
