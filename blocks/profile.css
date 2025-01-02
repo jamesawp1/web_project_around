@@ -20,6 +20,7 @@
 
 .profile__picture-container:hover .profile__edit-picture {
   visibility: visible;
+  cursor: pointer;
 }
 
 .profile__image {

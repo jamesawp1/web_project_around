@@ -14,6 +14,7 @@ import {
   initialCards,
   profileName,
   profileJob,
+  changepicturePopup,
 } from "./utils.js";
 
 //Instância da API
@@ -170,4 +171,15 @@ editButton.addEventListener("click", () => {
   document.querySelector("#input-name").value = info.nameTitle;
   document.querySelector("#input-job").value = info.jobTitle;
   popup.classList.toggle("popup_opened");
+});
+
+//Troca a foto de perfil
+const popupPicture = new PopupWithForm(
+  ".popup-profile-picture",
+  (formData) => {}
+);
+popupPicture.setEventListeners();
+
+changepicturePopup.addEventListener("click", () => {
+  popupPicture.open();
 });

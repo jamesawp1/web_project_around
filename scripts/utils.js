@@ -36,3 +36,7 @@ export const popupAdd = document.querySelector(".popup-add-card");
 addButton.addEventListener("click", () => {
   popupAdd.classList.toggle("popup_opened");
 });
+
+export const changepicturePopup = document.querySelector(
+  ".profile__picture-container"
+);
