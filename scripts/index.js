@@ -131,31 +131,6 @@ api
     //
 
     const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
-      const card = new Card(
-        formData,
-        "#template",
-        {
-          handleCardClick: () => {
-            popupWithImage.setEventListeners(formData);
-          },
-        },
-        {
-          handleDeleteCard: (evt) => {
-            handleDelete(formData, evt);
-          },
-        },
-        {
-          handleLikeButtonClick: (evt) => {
-            handleLike(formData, evt);
-          },
-        }
-      );
-
-      const cardElement = card.generateCard();
-      cardRenderer.addItem(cardElement);
-
-      popupAddCard.saveButtonContentSaving();
-
       api
         .postUserCard(formData)
         .then((res) => {
@@ -163,12 +138,37 @@ api
             return res.json();
           }
         })
+        .then((item) => {
+          const card = new Card(
+            item,
+            "#template",
+            {
+              handleCardClick: () => {
+                popupWithImage.setEventListeners(item);
+              },
+            },
+            {
+              handleDeleteCard: (evt) => {
+                handleDelete(item, evt);
+              },
+            },
+            {
+              handleLikeButtonClick: (evt) => {
+                handleLike(item, evt);
+              },
+            }
+          );
+          const cardElement = card.generateCard();
+          cardRenderer.addItem(cardElement);
+        })
         .catch((err) => {
           console.log(`ERRO NO ENVIO DO CARTÃO À API: ${err}`);
         })
         .finally(() => {
           popupAddCard.saveButtonContentSave();
         });
+
+      popupAddCard.saveButtonContentSaving();
     });
     popupAddCard.setEventListeners();
   })
