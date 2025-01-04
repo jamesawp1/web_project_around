@@ -52,25 +52,14 @@ export default class Api {
   }
 
   postUserCard({ name, link }) {
-    fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
         name,
         link,
       }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(`ERRO NO ENVIO DO CARD: ${err}`);
-      });
+    });
   }
 
   deleteUserCard(cardId) {

@@ -135,7 +135,21 @@ api.getInitialCards().then((cards) => {
     const cardElement = card.generateCard();
     cardRenderer.addItem(cardElement);
 
-    api.postUserCard(formData);
+    popupAddCard.saveButtonContentSaving();
+
+    api
+      .postUserCard(formData)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((err) => {
+        console.log(`ERRO NO ENVIO DO CARTÃO À API: ${err}`);
+      })
+      .finally(() => {
+        popupAddCard.saveButtonContentSave();
+      });
   });
   popupAddCard.setEventListeners();
 });
