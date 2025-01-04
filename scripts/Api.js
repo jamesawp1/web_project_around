@@ -21,15 +21,7 @@ export default class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .catch((err) => {
-        console.log(`ERRO NOS CARDS: ${err}`);
-      });
+    });
   }
 
   patchUserInfo({ name, about }) {

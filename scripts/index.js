@@ -75,84 +75,95 @@ function handleLike(cardItem, evt) {
   }
 }
 
-api.getInitialCards().then((cards) => {
-  const cardRenderer = new Section(
-    {
-      items: cards,
-      renderer: (item) => {
-        const card = new Card(
-          item,
-          "#template",
-          {
-            handleCardClick: () => {
-              popupWithImage.setEventListeners(item);
-            },
-          },
-          {
-            handleDeleteCard: (evt) => {
-              handleDelete(item, evt);
-            },
-          },
-          {
-            handleLikeButtonClick: (evt) => {
-              handleLike(item, evt);
-            },
-          }
-        );
-
-        const cardElement = card.generateCard();
-        cardRenderer.addItem(cardElement);
-      },
-    },
-
-    ".gallery"
-  );
-
-  cardRenderer.renderItems();
-  //
-
-  const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
-    const card = new Card(
-      formData,
-      "#template",
+api
+  .getInitialCards()
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    Promise.reject(`ERROR: ${res.status}`);
+  })
+  .then((cards) => {
+    const cardRenderer = new Section(
       {
-        handleCardClick: () => {
-          popupWithImage.setEventListeners(formData);
+        items: cards,
+        renderer: (item) => {
+          const card = new Card(
+            item,
+            "#template",
+            {
+              handleCardClick: () => {
+                popupWithImage.setEventListeners(item);
+              },
+            },
+            {
+              handleDeleteCard: (evt) => {
+                handleDelete(item, evt);
+              },
+            },
+            {
+              handleLikeButtonClick: (evt) => {
+                handleLike(item, evt);
+              },
+            }
+          );
+
+          const cardElement = card.generateCard();
+          cardRenderer.addItem(cardElement);
         },
       },
-      {
-        handleDeleteCard: (evt) => {
-          handleDelete(formData, evt);
-        },
-      },
-      {
-        handleLikeButtonClick: (evt) => {
-          handleLike(formData, evt);
-        },
-      }
+
+      ".gallery"
     );
 
-    const cardElement = card.generateCard();
-    cardRenderer.addItem(cardElement);
+    cardRenderer.renderItems();
+    //
 
-    popupAddCard.saveButtonContentSaving();
-
-    api
-      .postUserCard(formData)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
+    const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
+      const card = new Card(
+        formData,
+        "#template",
+        {
+          handleCardClick: () => {
+            popupWithImage.setEventListeners(formData);
+          },
+        },
+        {
+          handleDeleteCard: (evt) => {
+            handleDelete(formData, evt);
+          },
+        },
+        {
+          handleLikeButtonClick: (evt) => {
+            handleLike(formData, evt);
+          },
         }
-      })
-      .catch((err) => {
-        console.log(`ERRO NO ENVIO DO CARTÃO À API: ${err}`);
-      })
-      .finally(() => {
-        popupAddCard.saveButtonContentSave();
-      });
+      );
+
+      const cardElement = card.generateCard();
+      cardRenderer.addItem(cardElement);
+
+      popupAddCard.saveButtonContentSaving();
+
+      api
+        .postUserCard(formData)
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .catch((err) => {
+          console.log(`ERRO NO ENVIO DO CARTÃO À API: ${err}`);
+        })
+        .finally(() => {
+          popupAddCard.saveButtonContentSave();
+        });
+    });
+    popupAddCard.setEventListeners();
+  })
+  .catch((err) => {
+    console.log(`ERRO NO CARREGAMENTO INICIAL DOS CARTÕES: ${err}`);
   });
-  popupAddCard.setEventListeners();
-});
 
 //Validação
 const config = {
