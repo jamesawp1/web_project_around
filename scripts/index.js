@@ -181,7 +181,22 @@ const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
 
   user.setUserInfo(formData);
 
-  api.patchUserInfo(formData);
+  popupEditCard.saveButtonContentSaving();
+
+  api
+    .patchUserInfo(formData)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`ERROR: ${res.status}`);
+    })
+    .catch((err) => {
+      console.log(`ERRO NA INSERÇÃO DAS INFORMAÇÕES DE PERFIL: ${err}`);
+    })
+    .finally(() => {
+      popupEditCard.saveButtonContentSave();
+    });
 });
 popupEditCard.setEventListeners();
 

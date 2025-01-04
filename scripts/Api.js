@@ -40,15 +40,7 @@ export default class Api {
         name,
         about,
       }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .catch((err) => {
-        console.log(`ERRO NA INSERÇÃO DAS INFOS: ${err}`);
-      });
+    });
   }
 
   postUserCard({ name, link }) {
