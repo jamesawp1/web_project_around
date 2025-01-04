@@ -4,7 +4,8 @@ export default class Card {
     selector,
     { handleCardClick },
     { handleDeleteCard },
-    { handleLikeButtonClick }
+    { handleLikeButton },
+    { handleDislikeButton }
   ) {
     this._data = data;
     this._text = data.name;
@@ -12,7 +13,8 @@ export default class Card {
     this._selector = selector;
     this._handleCardClick = handleCardClick;
     this.handleDeleteCard = handleDeleteCard;
-    this.handleLikeButtonClick = handleLikeButtonClick;
+    this.handleLikeButton = handleLikeButton;
+    this.handleDislikeButton = handleDislikeButton;
   }
 
   _getElement() {
@@ -70,7 +72,8 @@ export default class Card {
     this._element
       .querySelector(".gallery__like-button")
       .addEventListener("click", (evt) => {
-        this.handleLikeButtonClick(evt);
+        //this.handleLikeButtonClick(evt);
+        this._turnOnLikeButton();
       });
 
     this._element
@@ -78,6 +81,17 @@ export default class Card {
       .addEventListener("click", () => {
         this._handleCardClick();
       });
+  }
+
+  _turnOnLikeButton() {
+    this._likeIconSource = this._likeButton.getAttribute("src");
+    if (this._likeButtonInactive.href.includes(this._likeIconSource)) {
+      this._likeButton.setAttribute("src", this._likeButtonActive);
+      this.handleLikeButton();
+    } else {
+      this._likeButton.setAttribute("src", this._likeButtonInactive);
+      this.handleDislikeButton();
+    }
   }
 
   /*_handleDeleteButtonClick(evt) {

@@ -59,15 +59,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .catch((err) => {
-        console.log(`ERRO No dislike DO CARD: ${err}`);
-      });
+    });
   }
 
   patchPicProfile(picLink) {

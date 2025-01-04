@@ -73,7 +73,8 @@ async function handleDelete(cardItem, evt) {
 }
 
 function addLike(cardItem, evt) {
-  evt.target.setAttribute("src", "./images/button__icon_active.svg");
+  cardItem.isLiked = true;
+  //evt.target.setAttribute("src", "./images/button__icon_active.svg");
   return api
     .putLikeUserCard(cardItem._id)
     .then((res) => {
@@ -88,7 +89,7 @@ function addLike(cardItem, evt) {
 }
 
 function removeLike(cardItem, evt) {
-  evt.target.setAttribute("src", "./images/button__icon_active.svg");
+  //evt.target.setAttribute("src", "./images/button__icon_active.svg");
   return api
     .deleteLikeUserCard(cardItem._id)
     .then((res) => {
@@ -96,6 +97,9 @@ function removeLike(cardItem, evt) {
         return res.json();
       }
       return Promise.reject(`ERROR: ${res.status}`);
+    })
+    .then((aa) => {
+      console.log(`then ${aa}`);
     })
     .catch((err) => {
       console.log(`ERRO NO DESCURTIR DO CARTÃO: ${err}`);
@@ -129,8 +133,13 @@ api
               },
             },
             {
-              handleLikeButtonClick: (evt) => {
-                handleLike(item, evt);
+              handleLikeButton: (evt) => {
+                addLike(item, evt);
+              },
+            },
+            {
+              handleDislikeButton: (evt) => {
+                removeLike(item, evt);
               },
             }
           );
