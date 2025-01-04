@@ -6,16 +6,7 @@ import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
 import Api from "./Api.js";
 
-import {
-  editButton,
-  popup,
-  addButton,
-  popupAdd,
-  initialCards,
-  profileName,
-  profileJob,
-  changepicturePopup,
-} from "./utils.js";
+import { editButton, popup, changepicturePopup } from "./utils.js";
 
 //Instância da API
 const api = new Api({
@@ -26,8 +17,9 @@ const api = new Api({
   },
 });
 
-//Informações do usuário iniciais
+//Informações iniciais do usuário
 let ownerId;
+
 api
   .getInitialUserInfo()
   .then((res) => {
@@ -36,26 +28,22 @@ api
     }
     Promise.reject(`ERROR: ${res.status}`);
   })
-  .then((data) => {
-    const initialUserInfo = new UserInfo({
-      nameSelector: ".profile__title",
-      jobSelector: ".profile__subtitle",
-      pictureSelector: ".profile__image",
-    });
+  .then((dados) => {
+    const initialUserInfo = new UserInfo(
+      ".profile__title",
+      ".profile__subtitle",
+      ".profile__image"
+    );
+    initialUserInfo.setUserInfoWithAvatar(dados);
 
-    initialUserInfo.setUserInfo(data);
-
-    ownerId = data._id;
+    ownerId = dados._id;
   })
   .catch((err) => {
-    console.log(`ERRO NA OBTENÇÃO DAS INFORMAÇÕES: ${err}`);
+    console.log(`ERRO NA OBTENÇÃO DAS INFORMAÇÕES DE PERFIL: ${err}`);
   });
 
-//Adiciona cards iniciais junto da classe necessária para abrir a imagem dos cards
-const popupWithImage = new PopupWithImage(".popup-view-image");
-
-//delete
-async function handleDelete(cardItem, evt) {
+//Funções que integram ações junto aos cartões
+async function handleDelete(cardItem) {
   return api
     .deleteUserCard(cardItem._id)
     .then((res) => {
@@ -72,7 +60,7 @@ async function handleDelete(cardItem, evt) {
     });
 }
 
-function addLike(cardItem, evt) {
+function addLike(cardItem) {
   cardItem.isLiked = true;
   //evt.target.setAttribute("src", "./images/button__icon_active.svg");
   return api
@@ -88,7 +76,7 @@ function addLike(cardItem, evt) {
     });
 }
 
-function removeLike(cardItem, evt) {
+function removeLike(cardItem) {
   //evt.target.setAttribute("src", "./images/button__icon_active.svg");
   return api
     .deleteLikeUserCard(cardItem._id)
@@ -98,13 +86,13 @@ function removeLike(cardItem, evt) {
       }
       return Promise.reject(`ERROR: ${res.status}`);
     })
-    .then((aa) => {
-      console.log(`then ${aa}`);
-    })
     .catch((err) => {
       console.log(`ERRO NO DESCURTIR DO CARTÃO: ${err}`);
     });
 }
+
+//Classe necessária para abrir a imagem dos cards
+const popupWithImage = new PopupWithImage(".popup-view-image");
 
 api
   .getInitialCards()
@@ -133,13 +121,13 @@ api
               },
             },
             {
-              handleLikeButton: (evt) => {
-                addLike(item, evt);
+              handleLikeButton: () => {
+                addLike(item);
               },
             },
             {
-              handleDislikeButton: (evt) => {
-                removeLike(item, evt);
+              handleDislikeButton: () => {
+                removeLike(item);
               },
             }
           );
@@ -178,12 +166,20 @@ api
               },
             },
             {
-              handleLikeButtonClick: (evt) => {
-                handleLike(item, evt);
+              handleLikeButton: () => {
+                addLike(item);
+              },
+            },
+            {
+              handleDislikeButton: () => {
+                removeLike(item);
               },
             }
           );
           const cardElement = card.generateCard();
+
+          popupAddCard.saveButtonContentSaving();
+
           cardRenderer.addItem(cardElement);
         })
         .catch((err) => {
@@ -192,8 +188,6 @@ api
         .finally(() => {
           popupAddCard.saveButtonContentSave();
         });
-
-      popupAddCard.saveButtonContentSaving();
     });
     popupAddCard.setEventListeners();
   })
@@ -217,9 +211,7 @@ forms.forEach((item) => {
   formValidate.enableValidation();
 });
 
-//Popup que adiciona outros cards
-
-//Adiciona informações do usuário à página
+//Adiciona informações (de texto) do usuário à página
 const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
   const user = new UserInfo({
     nameSelector: ".profile__title",
@@ -247,11 +239,10 @@ const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
 });
 popupEditCard.setEventListeners();
 
-//Obtem os seletores de informações do perfil
+//Obtem os seletores que contém as informações (texto) do perfil
 const initialUser = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__subtitle",
-  pictureSelector: ".profile__image",
 });
 
 //Recupera o conteúdo do que estiver gravado nos seletores de initialUser e os repassa para o formulário
@@ -276,6 +267,7 @@ const popupPicture = new PopupWithForm(".popup-profile-picture", (formData) => {
     })
     .then((userData) => {
       initialUser.setUserInfo(userData);
+      //document.querySelector(".profile__image") = userData;
     })
     .catch((err) => {
       console.log(`ERRO AO MUDAR A FOTOGRAFIA DE PERFIL: ${err}`);
@@ -285,7 +277,7 @@ const popupPicture = new PopupWithForm(".popup-profile-picture", (formData) => {
     });
 });
 popupPicture.setEventListeners();
-
+//Abre o popup que altera a foto de perfil
 changepicturePopup.addEventListener("click", () => {
   popupPicture.open();
 });
