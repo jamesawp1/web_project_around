@@ -43,7 +43,7 @@ api
   });
 
 //Funções que integram ações junto aos cartões
-async function handleDelete(cardItem) {
+async function handleDelete(cardItem, evt) {
   return api
     .deleteUserCard(cardItem._id)
     .then((res) => {
@@ -213,10 +213,7 @@ forms.forEach((item) => {
 
 //Adiciona informações (de texto) do usuário à página
 const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
-  const user = new UserInfo({
-    nameSelector: ".profile__title",
-    jobSelector: ".profile__subtitle",
-  });
+  const user = new UserInfo(".profile__title", ".profile__subtitle");
 
   user.setUserInfo(formData);
 

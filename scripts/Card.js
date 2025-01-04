@@ -71,8 +71,7 @@ export default class Card {
 
     this._element
       .querySelector(".gallery__like-button")
-      .addEventListener("click", (evt) => {
-        //this.handleLikeButtonClick(evt);
+      .addEventListener("click", () => {
         this._turnOnLikeButton();
       });
 
