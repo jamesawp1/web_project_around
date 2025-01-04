@@ -240,10 +240,7 @@ const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
 popupEditCard.setEventListeners();
 
 //Obtem os seletores que contém as informações (texto) do perfil
-const initialUser = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__subtitle",
-});
+const initialUser = new UserInfo(".profile__title", ".profile__subtitle");
 
 //Recupera o conteúdo do que estiver gravado nos seletores de initialUser e os repassa para o formulário
 editButton.addEventListener("click", () => {
@@ -266,8 +263,9 @@ const popupPicture = new PopupWithForm(".popup-profile-picture", (formData) => {
       return Promise.reject(`Error: ${res.status}`);
     })
     .then((userData) => {
-      initialUser.setUserInfo(userData);
-      //document.querySelector(".profile__image") = userData;
+      document
+        .querySelector(".profile__image")
+        .setAttribute("src", userData.avatar);
     })
     .catch((err) => {
       console.log(`ERRO AO MUDAR A FOTOGRAFIA DE PERFIL: ${err}`);
