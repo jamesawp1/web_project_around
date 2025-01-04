@@ -177,8 +177,7 @@ editButton.addEventListener("click", () => {
 
 //Troca a foto de perfil
 const popupPicture = new PopupWithForm(".popup-profile-picture", (formData) => {
-  const button = document.querySelector(".popup__button");
-  button.textContent = "Salvando...";
+  popupPicture.buttonSaving();
 
   api
     .patchPicProfile(formData)
@@ -194,7 +193,7 @@ const popupPicture = new PopupWithForm(".popup-profile-picture", (formData) => {
       console.log(`ERRO NA MUDANÇA DE FOTO PERFIL: ${err}`);
     })
     .finally(() => {
-      button.textContent = "Salvar";
+      popupPicture.buttonSave();
     });
 });
 popupPicture.setEventListeners();
