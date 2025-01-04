@@ -52,16 +52,7 @@ export default class Api {
       body: JSON.stringify({
         isLiked: true,
       }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-
-      .catch((err) => {
-        console.log(`ERRO No like DO CARD: ${err}`);
-      });
+    });
   }
 
   deleteLikeUserCard(cardId) {

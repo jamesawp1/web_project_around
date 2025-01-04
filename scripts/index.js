@@ -54,7 +54,7 @@ api
 //Adiciona cards iniciais junto da classe necessária para abrir a imagem dos cards
 const popupWithImage = new PopupWithImage(".popup-view-image");
 
-//delte
+//delete
 async function handleDelete(cardItem, evt) {
   return api
     .deleteUserCard(cardItem._id)
@@ -72,18 +72,34 @@ async function handleDelete(cardItem, evt) {
     });
 }
 
-function handleLike(cardItem, evt) {
-  if (cardItem.isLiked) {
-    return (
-      api.deleteLikeUserCard(cardItem._id) &&
-      evt.target.setAttribute("src", "./images/button__icon.svg")
-    );
-  } else if (!cardItem.isLiked) {
-    return (
-      api.putLikeUserCard(cardItem._id) &&
-      evt.target.setAttribute("src", "./images/button__icon_active.svg")
-    );
-  }
+function addLike(cardItem, evt) {
+  evt.target.setAttribute("src", "./images/button__icon_active.svg");
+  return api
+    .putLikeUserCard(cardItem._id)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`ERROR: ${res.status}`);
+    })
+    .catch((err) => {
+      console.log(`ERRO NO CURTIR DO CARTÃO: ${err}`);
+    });
+}
+
+function removeLike(cardItem, evt) {
+  evt.target.setAttribute("src", "./images/button__icon_active.svg");
+  return api
+    .deleteLikeUserCard(cardItem._id)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`ERROR: ${res.status}`);
+    })
+    .catch((err) => {
+      console.log(`ERRO NO DESCURTIR DO CARTÃO: ${err}`);
+    });
 }
 
 api
