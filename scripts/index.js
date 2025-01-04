@@ -28,17 +28,28 @@ const api = new Api({
 
 //Informações do usuário iniciais
 let ownerId;
-api.getUserInfo().then((data) => {
-  const initialUserInfo = new UserInfo({
-    nameSelector: ".profile__title",
-    jobSelector: ".profile__subtitle",
-    pictureSelector: ".profile__image",
+api
+  .getInitialUserInfo()
+  .then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    Promise.reject(`ERROR: ${res.status}`);
+  })
+  .then((data) => {
+    const initialUserInfo = new UserInfo({
+      nameSelector: ".profile__title",
+      jobSelector: ".profile__subtitle",
+      pictureSelector: ".profile__image",
+    });
+
+    initialUserInfo.setUserInfo(data);
+
+    ownerId = data._id;
+  })
+  .catch((err) => {
+    console.log(`ERRO NA OBTENÇÃO DAS INFORMAÇÕES: ${err}`);
   });
-
-  initialUserInfo.setUserInfo(data);
-
-  ownerId = data._id;
-});
 
 //Adiciona cards iniciais junto da classe necessária para abrir a imagem dos cards
 const popupWithImage = new PopupWithImage(".popup-view-image");

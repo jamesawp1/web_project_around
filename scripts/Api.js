@@ -4,18 +4,10 @@ export default class Api {
     this._headers = options.headers;
   }
 
-  getUserInfo() {
+  getInitialUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .catch((err) => {
-        console.log(`ERRO NAS INFOS: ${err}`);
-      });
+    });
   }
 
   getInitialCards() {
