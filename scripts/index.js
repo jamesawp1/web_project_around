@@ -45,9 +45,20 @@ const popupWithImage = new PopupWithImage(".popup-view-image");
 
 //delte
 async function handleDelete(cardItem, evt) {
-  return api.deleteUserCard(cardItem._id).then(() => {
-    evt.target.closest(".gallery__card").remove();
-  });
+  return api
+    .deleteUserCard(cardItem._id)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`ERROR: ${res.status}`);
+    })
+    .then(() => {
+      evt.target.closest(".gallery__card").remove();
+    })
+    .catch((err) => {
+      console.log(`ERRO NA EXCLUSÃO DO CARTÃO: ${err}`);
+    });
 }
 
 function handleLike(cardItem, evt) {
@@ -175,9 +186,9 @@ editButton.addEventListener("click", () => {
   popup.classList.toggle("popup_opened");
 });
 
-//Troca a foto de perfil
+//Altera a fotografia de perfil
 const popupPicture = new PopupWithForm(".popup-profile-picture", (formData) => {
-  popupPicture.buttonSaving();
+  popupPicture.saveButtonContentSaving();
 
   api
     .patchPicProfile(formData)
@@ -185,15 +196,16 @@ const popupPicture = new PopupWithForm(".popup-profile-picture", (formData) => {
       if (res.ok) {
         return res.json();
       }
+      return Promise.reject(`Error: ${res.status}`);
     })
     .then((userData) => {
       initialUser.setUserInfo(userData);
     })
     .catch((err) => {
-      console.log(`ERRO NA MUDANÇA DE FOTO PERFIL: ${err}`);
+      console.log(`ERRO AO MUDAR A FOTOGRAFIA DE PERFIL: ${err}`);
     })
     .finally(() => {
-      popupPicture.buttonSave();
+      popupPicture.saveButtonContentSave();
     });
 });
 popupPicture.setEventListeners();
