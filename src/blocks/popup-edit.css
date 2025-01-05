@@ -30,6 +30,10 @@
   box-sizing: border-box;
 }
 
+.popup__container-confirmation {
+  max-height: 210px;
+}
+
 .popup__close-button {
   position: absolute;
   top: -45px;
