@@ -1,0 +1,20 @@
+{
+  "name": "web_project_around",
+  "version": "1.0.0",
+  "description": "\"\"\u001b[DSocial Media\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[DImage Social Media\"",
+  "main": "\u001b[D\u001b./src/index.html)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "web_project-around\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[_"
+  },
+  "keywords": [
+    "social",
+    "image",
+    "media"
+  ],
+  "author": "James Jr.",
+  "license": "ISC"
+}
