@@ -7,7 +7,7 @@ import UserInfo from "../scripts/UserInfo.js";
 import Api from "../scripts/Api.js";
 import PopupWithConfirmation from "../scripts/PopupWithConfirmation.js";
 
-import { editButton, popup, changepicturePopup } from "../scripts/utils.js";
+import { editButton, addButton, changepicturePopup } from "../scripts/utils.js";
 
 //Instância da API
 const api = new Api({
@@ -200,6 +200,10 @@ api
         });
     });
     popupAddCard.setEventListeners();
+    //Abre popup que adiciona cards
+    addButton.addEventListener("click", () => {
+      popupAddCard.open();
+    });
   })
   .catch((err) => {
     console.log(`ERRO NO CARREGAMENTO INICIAL DOS CARTÕES: ${err}`);
@@ -254,7 +258,7 @@ editButton.addEventListener("click", () => {
   const info = initialUser.getUserInfo();
   document.querySelector("#input-name").value = info.nameTitle;
   document.querySelector("#input-job").value = info.jobTitle;
-  popup.classList.toggle("popup_opened");
+  popupEditCard.open();
 });
 
 //Altera a fotografia de perfil
