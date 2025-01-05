@@ -116,7 +116,7 @@ api
   .then((cards) => {
     const cardRenderer = new Section(
       {
-        items: cards,
+        items: cards.reverse(),
         renderer: (item) => {
           const card = new Card(
             item,

@@ -12,6 +12,6 @@ ATUALIZAÇÃO 3: Nesse Sprint, partes do projeto foram refatoradas a fim de torn
 
 # ATUALIZAÇÃO 4: Atualmente, as informações do usuário bem como os cartões criados por este serão salvas em um servidor através da classe Api. Consequentemente, quando esse mesmo usuário abrir a página novamente, suas informações e cartões serão carregados e renderizados. Cada curtida, descurtida, exclusão de cartões etc são pequenos dados que compõem toda a informação do usuário que, por sua vez, é recebida e enviada pelo/ao servidor.
 
-![aaaaaaaaaaaaa Medium Gif](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fimages%2Fe925ae1430bc72230747042137c5e057%2Ftenor.gif%3Fitemid%3D10222299&f=1&nofb=1&ipt=ddc3e2aa9dd220a3d6e05a88bbee792cce943b71d820e7261d3435a084b26ef8&ipo=images)
+![Demonstração das funcionalidades em formato GIF](preview_around_us.gif)
 
 # Link do projeto via GitHub Pages: https://jamesawp1.github.io/web_project_around/
