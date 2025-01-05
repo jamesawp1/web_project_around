@@ -44,22 +44,6 @@ api
   });
 
 //Funções que integram ações junto aos cartões
-/*async function handleDelete(cardItem, evt) {
-  return api
-    .deleteUserCard(cardItem._id)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`ERROR: ${res.status}`);
-    })
-    .then(() => {
-      evt.target.closest(".gallery__card").remove();
-    })
-    .catch((err) => {
-      console.log(`ERRO NA EXCLUSÃO DO CARTÃO: ${err}`);
-    });
-}*/
 const popupDeleteConfirmation = new PopupWithConfirmation(
   ".popup-confirmation"
 );
@@ -68,16 +52,29 @@ popupDeleteConfirmation.setEventListeners();
 const deleteCard = (card, evt) => {
   popupDeleteConfirmation.open();
   popupDeleteConfirmation.setAction(() => {
-    api.deleteUserCard(card._id).then(() => {
-      evt.target.closest(".gallery__card").remove();
-      popupDeleteConfirmation.close();
-    });
+    api
+      .deleteUserCard(card._id)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`ERROR: ${res.status}`);
+      })
+      .then(() => {
+        evt.target.closest(".gallery__card").remove();
+        popupDeleteConfirmation.close();
+      })
+      .catch((err) => {
+        console.log(`ERRO AO EXCLUIR O CARTÃO: ${err}`);
+      })
+      .finally(() => {
+        //popupAddCard.saveButtonContentSave();
+      });
   });
 };
 
 function addLike(cardItem) {
   cardItem.isLiked = true;
-  //evt.target.setAttribute("src", "./images/button__icon_active.svg");
   return api
     .putLikeUserCard(cardItem._id)
     .then((res) => {
@@ -92,7 +89,6 @@ function addLike(cardItem) {
 }
 
 function removeLike(cardItem) {
-  //evt.target.setAttribute("src", "./images/button__icon_active.svg");
   return api
     .deleteLikeUserCard(cardItem._id)
     .then((res) => {
@@ -151,13 +147,12 @@ api
           cardRenderer.addItem(cardElement);
         },
       },
-
       ".gallery"
     );
 
     cardRenderer.renderItems();
-    //
 
+    //Cria cartões
     const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
       api
         .postUserCard(formData)
@@ -177,7 +172,7 @@ api
             },
             {
               handleDeleteCard: (evt) => {
-                handleDelete(item, evt);
+                deleteCard(item, evt);
               },
             },
             {
@@ -265,7 +260,6 @@ editButton.addEventListener("click", () => {
 //Altera a fotografia de perfil
 const popupPicture = new PopupWithForm(".popup-profile-picture", (formData) => {
   popupPicture.saveButtonContentSaving();
-
   api
     .patchPicProfile(formData)
     .then((res) => {
