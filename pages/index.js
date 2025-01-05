@@ -1,13 +1,13 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import Section from "./Section.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
-import Api from "./Api.js";
-import PopupWithConfirmation from "./PopupWithConfirmation.js";
+import Card from "../scripts/Card.js";
+import FormValidator from "../scripts/FormValidator.js";
+import Section from "../scripts/Section.js";
+import PopupWithImage from "../scripts/PopupWithImage.js";
+import PopupWithForm from "../scripts/PopupWithForm.js";
+import UserInfo from "../scripts/UserInfo.js";
+import Api from "../scripts/Api.js";
+import PopupWithConfirmation from "../scripts/PopupWithConfirmation.js";
 
-import { editButton, popup, changepicturePopup } from "./utils.js";
+import { editButton, popup, changepicturePopup } from "../scripts/utils.js";
 
 //Instância da API
 const api = new Api({
