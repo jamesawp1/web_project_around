@@ -5,6 +5,7 @@ import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
 import Api from "./Api.js";
+import PopupWithConfirmation from "./PopupWithConfirmation.js";
 
 import { editButton, popup, changepicturePopup } from "./utils.js";
 
@@ -43,7 +44,7 @@ api
   });
 
 //Funções que integram ações junto aos cartões
-async function handleDelete(cardItem, evt) {
+/*async function handleDelete(cardItem, evt) {
   return api
     .deleteUserCard(cardItem._id)
     .then((res) => {
@@ -58,7 +59,21 @@ async function handleDelete(cardItem, evt) {
     .catch((err) => {
       console.log(`ERRO NA EXCLUSÃO DO CARTÃO: ${err}`);
     });
-}
+}*/
+const popupDeleteConfirmation = new PopupWithConfirmation(
+  ".popup-confirmation"
+);
+popupDeleteConfirmation.setEventListeners();
+
+const deleteCard = (card, evt) => {
+  popupDeleteConfirmation.open();
+  popupDeleteConfirmation.setAction(() => {
+    api.deleteUserCard(card._id).then(() => {
+      evt.target.closest(".gallery__card").remove();
+      popupDeleteConfirmation.close();
+    });
+  });
+};
 
 function addLike(cardItem) {
   cardItem.isLiked = true;
@@ -117,7 +132,7 @@ api
             },
             {
               handleDeleteCard: (evt) => {
-                handleDelete(item, evt);
+                deleteCard(item, evt);
               },
             },
             {
