@@ -66,9 +66,6 @@ const deleteCard = (card, evt) => {
       })
       .catch((err) => {
         console.log(`ERRO AO EXCLUIR O CARTÃO: ${err}`);
-      })
-      .finally(() => {
-        //popupAddCard.saveButtonContentSave();
       });
   });
 };
@@ -194,7 +191,6 @@ const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
 
       popupAddCard.saveButtonContentSaving();
 
-      //cardRenderer.addItem(cardElement);
       document.querySelector(".gallery").prepend(cardElement);
     })
     .catch((err) => {
