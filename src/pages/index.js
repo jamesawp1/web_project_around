@@ -151,63 +151,64 @@ api
     );
 
     cardRenderer.renderItems();
-
-    //Cria cartões
-    const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
-      api
-        .postUserCard(formData)
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-        })
-        .then((item) => {
-          const card = new Card(
-            item,
-            "#template",
-            {
-              handleCardClick: () => {
-                popupWithImage.setEventListeners(item);
-              },
-            },
-            {
-              handleDeleteCard: (evt) => {
-                deleteCard(item, evt);
-              },
-            },
-            {
-              handleLikeButton: () => {
-                addLike(item);
-              },
-            },
-            {
-              handleDislikeButton: () => {
-                removeLike(item);
-              },
-            }
-          );
-          const cardElement = card.generateCard();
-
-          popupAddCard.saveButtonContentSaving();
-
-          cardRenderer.addItem(cardElement);
-        })
-        .catch((err) => {
-          console.log(`ERRO NO ENVIO DO CARTÃO À API: ${err}`);
-        })
-        .finally(() => {
-          popupAddCard.saveButtonContentSave();
-        });
-    });
-    popupAddCard.setEventListeners();
-    //Abre popup que adiciona cards
-    addButton.addEventListener("click", () => {
-      popupAddCard.open();
-    });
   })
   .catch((err) => {
     console.log(`ERRO NO CARREGAMENTO INICIAL DOS CARTÕES: ${err}`);
   });
+
+//Cria cartões
+const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
+  api
+    .postUserCard(formData)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+    .then((item) => {
+      const card = new Card(
+        item,
+        "#template",
+        {
+          handleCardClick: () => {
+            popupWithImage.setEventListeners(item);
+          },
+        },
+        {
+          handleDeleteCard: (evt) => {
+            deleteCard(item, evt);
+          },
+        },
+        {
+          handleLikeButton: () => {
+            addLike(item);
+          },
+        },
+        {
+          handleDislikeButton: () => {
+            removeLike(item);
+          },
+        }
+      );
+      const cardElement = card.generateCard();
+
+      popupAddCard.saveButtonContentSaving();
+
+      //cardRenderer.addItem(cardElement);
+      document.querySelector(".gallery").prepend(cardElement);
+    })
+    .catch((err) => {
+      console.log(`ERRO NO ENVIO DO CARTÃO À API: ${err}`);
+    })
+    .finally(() => {
+      popupAddCard.saveButtonContentSave();
+    });
+});
+popupAddCard.setEventListeners();
+//Abre popup que adiciona cards
+addButton.addEventListener("click", () => {
+  popupAddCard.open();
+});
 
 //Validação
 const config = {
