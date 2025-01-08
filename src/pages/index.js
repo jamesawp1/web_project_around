@@ -155,6 +155,7 @@ api
 
 //Cria cartões
 const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
+  popupAddCard.saveButtonContentSaving();
   api
     .postUserCard(formData)
     .then((res) => {
@@ -189,14 +190,13 @@ const popupAddCard = new PopupWithForm(".popup-add-card", (formData) => {
       );
       const cardElement = card.generateCard();
 
-      popupAddCard.saveButtonContentSaving();
-
       document.querySelector(".gallery").prepend(cardElement);
     })
     .catch((err) => {
       console.log(`ERRO NO ENVIO DO CARTÃO À API: ${err}`);
     })
     .finally(() => {
+      popupAddCard.close();
       popupAddCard.saveButtonContentSave();
     });
 });
@@ -242,6 +242,7 @@ const popupEditCard = new PopupWithForm(".popup-edit-profile", (formData) => {
       console.log(`ERRO NA INSERÇÃO DAS INFORMAÇÕES DE PERFIL: ${err}`);
     })
     .finally(() => {
+      popupEditCard.close();
       popupEditCard.saveButtonContentSave();
     });
 });
@@ -278,6 +279,7 @@ const popupPicture = new PopupWithForm(".popup-profile-picture", (formData) => {
       console.log(`ERRO AO MUDAR A FOTOGRAFIA DE PERFIL: ${err}`);
     })
     .finally(() => {
+      popupPicture.close();
       popupPicture.saveButtonContentSave();
     });
 });

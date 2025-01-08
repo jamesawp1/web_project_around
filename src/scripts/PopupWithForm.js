@@ -47,8 +47,6 @@ export default class PopupWithForm extends Popup {
       this._selector
         .querySelector(".popup__button")
         .classList.add("popup__button_disabled");
-
-      this.close();
     });
   }
 }
